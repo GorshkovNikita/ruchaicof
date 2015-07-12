@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/', 'HomeController@index');
+Route::controller('/', 'HomeController');

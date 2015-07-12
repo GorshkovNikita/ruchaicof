@@ -9,77 +9,42 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
+    public function getIndex()
     {
-        return view('main');
+        return view('home.main');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function getAbout($type = null)
     {
-        //
+        return view('home.about');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
+    public function getProducts($type = null)
     {
-        //
+        switch ($type)
+        {
+            case null:
+                return view('home.products');
+            case "tea":
+                return view('products.tea');
+            case "coffee":
+                return view('products.coffee');
+            case "china":
+                return view('products.china');
+            case "crystal":
+                return view('products.crystal');
+            case "food":
+                return view('products.food');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function getOffers()
     {
-        //
+        return view('home.offers');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function getContacts()
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('home.contacts');
     }
 }

@@ -3,30 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>@yield('title')</title>
-        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery.min.js"></script>
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/responsiveslides.css') }}" rel="stylesheet" type="text/css">
+        <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+        <script src="{{ asset('js/js.js') }}"></script>
     </head>
     <body>
         <div class="container">
             <header>
                 <div class="top">
-
+                    {!! link_to('/', '') !!}
                 </div>
                 <nav>
                     <ul class="menu">
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">О нас</a></li>
+                        <li>{!! link_to('/', 'Главная') !!}</li>
+                        <li>{!! link_to('about', 'О нас') !!}</li>
                         <li>
-                            <a href="#">Продукция</a>
+                            {!! link_to('products', 'Продукция') !!}
                             <ul class="sub-menu">
-                                <li><a href="#">Чай</a></li>
-                                <li><a href="#">Кофе</a></li>
-                                <li><a href="#">Фарфор</a></li>
-                                <li><a href="#">Хрусталь</a></li>
-                                <li><a href="#">Продукты</a></li>
+                                <li>{!! link_to('products/tea', 'Чай') !!}</li>
+                                <li>{!! link_to('products/coffee', 'Кофе') !!}</li>
+                                <li>{!! link_to('products/china', 'Фарфор') !!}</li>
+                                <li>{!! link_to('products/crystal', 'Хрусталь') !!}</li>
+                                <li>{!! link_to('products/food', 'Продукты') !!}</li>
                             </ul>
                         </li>
-                        <li><a href="#" id="high">Предложения для клиентов</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li>{!! link_to('offers', 'Предложения для клиентов', ['id' => 'high']) !!}</li>
+                        <li>{!! link_to('contacts', 'Контакты') !!}</li>
                     </ul>
                 </nav>
             </header>

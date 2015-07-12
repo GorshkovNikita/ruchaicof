@@ -1,9 +1,9 @@
 @extends('layouts\layout')
 
 @section('title')
-    Главная
+    Фарфор
 @stop
 
 @section('content')
-    Это главная страница
+    Здесь будет фарфор
 @stop
