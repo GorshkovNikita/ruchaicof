@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Контакты
+    <h2 class="page-title">Контакты</h2>
 @stop

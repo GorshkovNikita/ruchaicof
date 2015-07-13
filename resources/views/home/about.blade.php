@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Это страница с информацией о нашей компании
+    <h2 class="page-title">О нас</h2>
 @stop

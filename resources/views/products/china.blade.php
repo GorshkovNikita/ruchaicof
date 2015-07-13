@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Здесь будет фарфор
+    <h2 class="page-title">Здесь будет фарфор</h2>
 @stop

@@ -10,8 +10,8 @@
         <script src="{{ asset('js/js.js') }}"></script>
     </head>
     <body>
-        <div class="container">
-            <header>
+        <header>
+            <div class="container">
                 <div class="top">
                     {!! link_to('/', '') !!}
                 </div>
@@ -33,15 +33,20 @@
                         <li>{!! link_to('contacts', 'Контакты') !!}</li>
                     </ul>
                 </nav>
-            </header>
+            </div>
+        </header>
 
-            <div class="content">
+        <div class="content">
+            <div class="container">
                 @yield('content')
             </div>
+        </div>
 
-            <footer>
+        <footer>
+            <div class="container">
 
-            </footer>
+            </div>
+        </footer>
         </div>
     </body>
 </html>

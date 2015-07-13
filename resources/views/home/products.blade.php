@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Наша продукция
+    <h2 class="page-title">Наша продукция</h2>
 @stop

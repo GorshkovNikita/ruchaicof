@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Предложения для клиентов
+    <h2 class="page-title">Предложения для клиентов</h2>
 @stop

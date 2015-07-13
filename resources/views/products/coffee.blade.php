@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    Здесь будет кофе
+    <h2 class="page-title">Здесь будет кофе</h2>
 @stop
