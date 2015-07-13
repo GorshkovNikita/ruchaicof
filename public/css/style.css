@@ -27,6 +27,8 @@ p {
 .container {
     width: 1000px;
     margin: auto;
+    height: auto;
+    overflow: auto;
 }
 
 /* Header */
@@ -108,7 +110,7 @@ nav {
 }
 
 .sub-menu {
-    position: relative;
+    position: absolute;
     width: inherit;
     display: none;
     list-style: none;
@@ -179,7 +181,68 @@ h2.page-title {
     display: block;
     color: #d58d0e;
     padding: 10px;
+}
 
+/* Products Page */
+
+.products {
+    padding: 20px 0;
+    height: auto;
+}
+
+.products > div {
+    width: 320px;
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    float: left;
+    text-align: center;
+    background-color: #66512c;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    position: relative;
+}
+
+/*.products > div:hover {
+    left: 2px;
+    top: 2px;
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+}*/
+
+.products > div:nth-child(3n) {
+    margin-right: 0;
+}
+
+.products > div:nth-child(3n+1) {
+    clear: both;
+}
+
+.products > div > p {
+    height: 80px;
+    padding: 10px 15px;
+}
+
+.products > div > img {
+    margin-top: 10px;
+}
+
+.products > div > a {
+    height: 20px;
+    display: block;
+    color: #d58d0e;
+    padding-bottom: 15px;
+}
+
+.products > div > h3 {
+    height: 23px;
 }
 
 /* Footer */
