@@ -6,7 +6,7 @@
 
 @section('content')
     <h2 class="page-title">Наша продукция</h2>
-    <div class="products">
+    <div class="page-wrapper products">
         <div>
             <h3>Чай</h3>
             <img src="{{ asset('images/tea_prod.png') }}" alt="Чай" height="150px"/>

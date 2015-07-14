@@ -15,7 +15,7 @@ a, a:hover, a:active {
 
 h1, h2, h3, h4, h5, h6 {
     color: #d8be81;
-    padding: 5px 10px;
+    padding: 5px 15px;
 }
 
 p {
@@ -144,7 +144,13 @@ h2.page-title {
     background-color: #66512c;
     color: #d8be81;
     border-radius: 10px;
+    margin-right: 15px;
     clear: both;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
 }
 
 /* Main Page */
@@ -183,15 +189,17 @@ h2.page-title {
     padding: 10px;
 }
 
-/* Products Page */
+/* Home Pages */
 
-.products {
-    padding: 20px 0;
+.page-wrapper {
+    margin: 20px 15px 20px 0;
     height: auto;
 }
 
+/* Products Page */
+
 .products > div {
-    width: 320px;
+    width: 315px;
     height: auto;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -244,6 +252,74 @@ h2.page-title {
 .products > div > h3 {
     height: 23px;
 }
+
+/* Products Page */
+
+/* Tea Page */
+
+.tea {
+    height: auto;
+    overflow: auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #66512c;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+.tea > div {
+    width: 285px;
+    height: auto;
+    position: relative;
+    background-color: #ffffff;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    float: left;
+    text-align: center;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+.tea > div:hover {
+    left: 2px;
+    top: 2px;
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+    box-shadow: 3px 3px 10px rgba(0,0,0,.4);
+}
+
+.tea > div:nth-child(3n) {
+    margin-right: 0;
+}
+
+.tea > div:nth-child(3n+1) {
+    clear: both;
+}
+
+.tea > div > h3 {
+    color: #66512c;
+}
+
+.tea > div > p {
+    color: #66512c;
+}
+
+/* Contacts Page */
+
+
+
+/* About Page */
+
 
 /* Footer */
 
