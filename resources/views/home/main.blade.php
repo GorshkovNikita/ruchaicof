@@ -12,7 +12,7 @@
                 <p class="caption">This is a caption</p>
             </li>
             <li>
-                <img src="images/tea2.jpg" alt="">
+                <img src="images/tea.jpg" alt="">
                 <p class="caption">This is another caption</p>
             </li>
         </ul>
