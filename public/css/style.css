@@ -321,6 +321,48 @@ h2.page-title {
 /* About Page */
 
 
+/* Register Page */
+
+.register-form {
+    height: auto;
+    overflow: auto;
+    color: #d8be81;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #66512c;
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -ms-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+}
+
+.register-form > label {
+    display: block;
+    height: 25px;
+    padding: 5px;
+}
+
+.register-form > label:last-child {
+    padding-left: 50px;
+}
+
+.register-form > label > span {
+    display: inline-block;
+    width: 130px;
+}
+
+.register-form > label > input {
+    font: inherit;
+    height: inherit;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+textarea:focus, input:focus, select:focus {
+    outline: none;
+}
+
 /* Footer */
 
 footer {
