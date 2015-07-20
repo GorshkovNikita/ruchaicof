@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
 
 Route::controller('/', 'HomeController');
