@@ -66,7 +66,33 @@
 
         <footer>
             <div class="container">
-
+                <ul>
+                    <li>
+                        8 (495) 777-77-90
+                    </li>
+                    <li>
+                        ruchaicof@mail.ru
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{{ url('about') }}">О нас</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('products') }}">Продукция</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('contacts') }}">Контакты</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        РуЧайКоф 2015
+                    </li>
+                    <li>
+                        Разрабатывается ГенРек
+                    </li>
+                </ul>
             </div>
         </footer>
         </div>

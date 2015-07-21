@@ -433,5 +433,46 @@ textarea:focus, input:focus, select:focus {
 /* Footer */
 
 footer {
+    color: #66512c;
+    font-weight: bold;
+    height: auto;
+    overflow: auto;
+    padding: 20px 0;
+    font-size: 14px;
+    -webkit-box-shadow: 5px 0 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 0 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 0 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 0 10px rgba(0,0,0,.4);
+    box-shadow: 5px 0 10px rgba(0,0,0,.4);
+}
 
+footer > div > ul {
+    width: 25%;
+    float: left;
+    list-style-type: none;
+}
+
+footer > div > ul > li {
+    height: 20px;
+    padding-left: 20px;
+}
+
+footer > div > ul:first-child > li:first-child {
+    background: url("../images/phone-51-16.png") no-repeat;
+}
+
+footer > div > ul:first-child > li:nth-child(2) {
+     background: url("../images/mail-16.png") no-repeat;
+ }
+
+footer > div > ul:nth-child(2) > li {
+    background: url("../images/arrow-27-16.png") no-repeat;
+}
+
+footer > div > ul:nth-child(3) > li:first-child {
+    background: url("../images/copyright-16.png") no-repeat;
+}
+
+footer > div > ul:nth-child(3) > li:nth-child(2) {
+    background: url("../images/website-optimization-16.png") no-repeat;
 }
