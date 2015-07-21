@@ -8,7 +8,7 @@
     <h2 class="page-title">Регистрация</h2>
     <div class="page-wrapper">
         <form method="POST" action="{{ url('auth/register') }}" accept-charset="UTF-8" class="register-form">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}?>">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>
                 <span>Имя:</span>
                 <input name="name" required >

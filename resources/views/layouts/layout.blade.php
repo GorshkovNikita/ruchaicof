@@ -18,24 +18,28 @@
                 <div class="top">
                     <div class="top-phone"></div>
                     {!! link_to('/', '') !!}
-                    <div class="top-login">
-                        <form method="POST" action="{{ url('/auth/login') }}" class="login-form">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}?>">
-                            <label>
-                                <input type="email" name="email" placeholder="e-mail">
-                            </label>
-                            <label>
-                                <input type="password" name="password" id="password" placeholder="Пароль">
-                            </label>
-                            <label>
-                                <input type="checkbox" name="remember"><span>&nbsp; Запомнить пароль</span>
-                            </label>
-                            <label>
-                                <input type="submit" value="Войти">
-                            </label>
-                            <a href="{{ url('auth/register') }}">Зарегистрироваться</a>
-                        </form>
-                    </div>
+                    @if (Auth::check())
+                        Привет, {!! Auth::user()->name !!}
+                    @else
+                        <div class="top-login">
+                            <form method="POST" action="{{ url('/auth/login') }}" class="login-form">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <label>
+                                    <input type="email" name="email" placeholder="e-mail">
+                                </label>
+                                <label>
+                                    <input type="password" name="password" id="password" placeholder="Пароль">
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="remember"><span>&nbsp; Запомнить пароль</span>
+                                </label>
+                                <label>
+                                    <input type="submit" value="Войти">
+                                </label>
+                                <a href="{{ url('auth/register') }}">Зарегистрироваться</a>
+                            </form>
+                        </div>
+                    @endif
                 </div>
                 <nav>
                     <ul class="menu">

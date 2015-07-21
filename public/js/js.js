@@ -1,3 +1,11 @@
+$.ajaxSetup(
+{
+    headers:
+    {
+        'X-CSRF-Token': $('input[name="_token"]').val()
+    }
+});
+
 $(function () {
     // Slideshow 4
     $("#slider4").responsiveSlides({
