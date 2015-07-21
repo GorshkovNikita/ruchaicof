@@ -28,11 +28,21 @@ trait RegistersUsers
     public function postRegister(Request $request)
     {
         $validator = $this->validator($request->all());
+        $niceNames = array(
+            'password' => 'Пароль',
+            'name' => 'Имя',
+            'surname' => 'Фамилия',
+            'email' => 'адрес электронной почты',
+            'phone' => 'телефон'
+        );
+
+        $validator->setAttributeNames($niceNames);
 
         if ($validator->fails()) {
-            $this->throwValidationException(
+            /*$this->throwValidationException(
                 $request, $validator
-            );
+            );*/
+            return redirect('auth/register')->withErrors($validator->messages())->withInput($request->all());
         }
 
         Auth::login($this->create($request->all()));
