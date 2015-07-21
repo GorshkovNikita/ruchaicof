@@ -44,16 +44,78 @@ header {
 }
 
 .top {
-    height: 131px;
+    height: 151px;
     padding: 25px 0;
     background: url('../images/logo.png') no-repeat center;
 }
 
+.top > div {
+    float: left;
+    width: 352px;
+    height: inherit;
+}
+
 .top > a {
     display: block;
+    float: left;
     width: 296px;
-    height: 131px;
-    margin: auto;
+    height: inherit;
+    margin: 0;
+}
+
+/* Login Form */
+
+.login-form {
+    font-size: 15px;
+    height: auto;
+    overflow: auto;
+    color: #d8be81;
+    padding: 10px 15px;
+    margin-right: 15px;
+    margin-left: 80px;
+    border-radius: 10px;
+    background-color: #66512c;
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -ms-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+}
+
+.login-form > label {
+    display: block;
+    height: 20px;
+    padding: 5px;
+}
+
+.login-form > label:nth-child(5n) {
+    display: inline-block;
+    height: 20px;
+}
+
+
+.login-form > label:nth-child(4n) > input {
+    height: 13px;
+}
+
+.login-form > label:nth-child(5n) > input {
+    border-radius: 0;
+}
+
+.login-form > label > span {
+    display: inline-block;
+    width: 170px;
+}
+
+.login-form > label > input {
+    font: inherit;
+    height: 20px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+textarea:focus, input:focus, select:focus {
+    outline: none;
 }
 
 /* Navigation */
@@ -344,17 +406,22 @@ h2.page-title {
 }
 
 .register-form > label:last-child {
+    height: 30px;
     padding-left: 50px;
+}
+
+.register-form > label:last-child > input {
+    border-radius: 0;
 }
 
 .register-form > label > span {
     display: inline-block;
-    width: 130px;
+    width: 170px;
 }
 
 .register-form > label > input {
     font: inherit;
-    height: inherit;
+    height: 25px;
     border-radius: 5px;
     padding: 0 10px;
 }

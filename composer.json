@@ -10,7 +10,8 @@
         "barryvdh/laravel-ide-helper": "^2.0",
         "laravelcollective/html": "^5.1",
         "doctrine/dbal": "^2.5",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "bestmomo/scafold": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
