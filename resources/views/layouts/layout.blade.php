@@ -16,7 +16,19 @@
         <header>
             <div class="container">
                 <div class="top">
-                    <div class="top-phone"></div>
+                    <div class="top-phone">
+                        <ul>
+                            <li>
+                                8 (495) 777-77-90
+                            </li>
+                            <li>
+                                ruchaicof@mail.ru
+                            </li>
+                            <li>
+                                пн-пт 10:00-18:00
+                            </li>
+                        </ul>
+                    </div>
                     {!! link_to('/', '') !!}
                     <div class="top-login">
                         @if (Auth::check())

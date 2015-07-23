@@ -67,7 +67,14 @@ trait AuthenticatesUsers
             ->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
             ]);*/
-
+        if ($request->is('auth/register'))
+        {
+            return Redirect::to('/')
+                ->withInput($request->only($this->loginUsername(), 'remember'))
+                ->withErrors([
+                    $this->loginUsername() => $this->getFailedLoginMessage(),
+                ]);
+        }
         // редирект на предыдущую страницу с возникошими ошибками
         return Redirect::back()
             ->withInput($request->only($this->loginUsername(), 'remember'))

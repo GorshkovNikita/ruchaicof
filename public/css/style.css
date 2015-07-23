@@ -44,6 +44,7 @@ header {
 }
 
 .top {
+    color: #66512c;
     height: 151px;
     padding: 25px 0;
     background: url('../images/logo.png') no-repeat center;
@@ -61,6 +62,42 @@ header {
     width: 296px;
     height: inherit;
     margin: 0;
+}
+
+.top-phone > ul {
+    height: auto;
+    overflow: auto;
+    font-weight: bold;
+    list-style: none;
+    color: #d8be81;
+    padding: 11px 25px 12px 25px;
+    margin-right: 95px;
+    margin-left: 15px;
+    border-radius: 10px;
+    background-color: #66512c;
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -ms-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
+}
+
+.top-phone > ul > li {
+    padding-top: 7px;
+    padding-left: 38px;
+    height: 32px;
+}
+
+.top-phone > ul > li:nth-child(1) {
+    background: url("../images/phone-46-32 (1).png") no-repeat;
+}
+
+.top-phone > ul > li:nth-child(2) {
+    background: url("../images/mail-32 (1).png") no-repeat;
+}
+
+.top-phone > ul > li:nth-child(3) {
+    background: url("../images/time-8-32.png") no-repeat;
 }
 
 /* Login Form */
@@ -223,7 +260,7 @@ h2.page-title {
 }
 
 .info > div {
-    width: 320px;
+    width: 315px;
     height: auto;
     margin-right: 20px;
     border-radius: 10px;
@@ -238,7 +275,7 @@ h2.page-title {
 }
 
 .info > div:last-child {
-    margin-right: 0;
+    margin-right: 15px;
 }
 
 .info > div > p {
@@ -414,7 +451,7 @@ h2.page-title {
     border-radius: 0;
 }
 
-.register-form > label > span {
+.register-form > label > span:nth-child(1) {
     display: inline-block;
     width: 170px;
 }
@@ -426,7 +463,8 @@ h2.page-title {
     padding: 0 10px;
 }
 
-.error-text {
+.register-form > label > span.error-text {
+    display: inline;
     color: red;
 }
 
