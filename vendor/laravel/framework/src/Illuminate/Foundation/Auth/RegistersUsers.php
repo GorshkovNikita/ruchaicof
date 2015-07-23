@@ -4,6 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mockery\CountValidator\Exception;
 
 trait RegistersUsers
 {
@@ -30,8 +31,6 @@ trait RegistersUsers
         $validator = $this->validator($request->all());
         $niceNames = array(
             'password' => 'Пароль',
-            'name' => 'Имя',
-            'surname' => 'Фамилия',
             'email' => 'адрес электронной почты',
             'phone' => 'телефон'
         );
@@ -39,9 +38,13 @@ trait RegistersUsers
         $validator->setAttributeNames($niceNames);
 
         if ($validator->fails()) {
+            // было изначально в фреймворке
+            // вылетал эксепшн
             /*$this->throwValidationException(
                 $request, $validator
             );*/
+
+            // теперь делается редирект с возникшими ошибками на страницу регистрации
             return redirect('auth/register')->withErrors($validator->messages())->withInput($request->all());
         }
 

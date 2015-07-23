@@ -18,33 +18,43 @@
                 <input name="surname" required value="{{ old('surname') }}" autocomplete="off"> </label>
             <label>
                 <span>e-mail:</span>
-                <input name="email" type="email" required value="{{ old('email') }}" autocomplete="off">
                 @if($errors->has('email'))
+                    <input name="email" type="email" required value="{{ old('email') }}" class="error-input" autocomplete="off">
                     @foreach ($errors->get('email') as $error)
-                        {{ $error }}
+                        <span class="error-text">{{ $error }}</span>
                     @endforeach
+                @else
+                    <input name="email" type="email" required value="{{ old('email') }}" autocomplete="off">
                 @endif
             </label>
             <label>
                 <span>Пароль:</span>
-                <input name="password" type="password" required autocomplete="off">
+                @if($errors->has('password'))
+                    <input name="password" type="password" class="error-input" required autocomplete="off">
+                @else
+                    <input name="password_confirmation" type="password" required autocomplete="off">
+                @endif
             </label>
             <label>
                 <span>Подтвердите пароль:</span>
-                <input name="password_confirmation" type="password" required autocomplete="off">
                 @if($errors->has('password'))
+                    <input name="password_confirmation" type="password" class="error-input" required autocomplete="off">
                     @foreach ($errors->get('password') as $error)
-                        {{ $error }}
+                        <span class="error-text">{{ $error }}</span>
                     @endforeach
+                @else
+                    <input name="password_confirmation" type="password" required autocomplete="off">
                 @endif
             </label>
             <label>
                 <span>Телефон:</span>
-                <input name="phone" type="tel" required value="{{ old('phone') }}" autocomplete="off">
                 @if($errors->has('phone'))
+                    <input name="phone" type="tel" required value="{{ old('phone') }}" class="error-input" autocomplete="off">
                     @foreach ($errors->get('phone') as $error)
-                        {{ $error }}
+                        <span class="error-text">{{ $error }}</span>
                     @endforeach
+                @else
+                    <input name="phone" type="tel" required value="{{ old('phone') }}" autocomplete="off">
                 @endif
             </label>
             <label>

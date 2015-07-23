@@ -29,13 +29,23 @@
                             </form>
                         @else
                             <form method="POST" action="{{ url('/auth/login') }}" class="login-form">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <label>
-                                    <input type="email" name="email" placeholder="e-mail" AUTOCOMPLETE="off">
-                                </label>
-                                <label>
-                                    <input type="password" name="password" id="password" placeholder="Пароль" AUTOCOMPLETE="off">
-                                </label>
+                                @if ($errors->has())
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <label>
+                                        <input type="email" name="email" placeholder="e-mail" value="{{ old('email') }}" class="error-input" autocomplete="off">
+                                    </label>
+                                    <label>
+                                        <input type="password" name="password" id="password" placeholder="Пароль" value="" class="error-input" autocomplete="off">
+                                    </label>
+                                @else
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <label>
+                                        <input type="email" name="email" placeholder="e-mail" value="{{ old('email') }}"  autocomplete="off">
+                                    </label>
+                                    <label>
+                                        <input type="password" name="password" id="password" placeholder="Пароль" value="" autocomplete="off">
+                                    </label>
+                                @endif
                                 <label>
                                     <input type="checkbox" name="remember"><span>&nbsp; Запомнить пароль</span>
                                 </label>

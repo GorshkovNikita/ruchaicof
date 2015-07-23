@@ -426,8 +426,32 @@ h2.page-title {
     padding: 0 10px;
 }
 
+.error-text {
+    color: red;
+}
+
 textarea:focus, input:focus, select:focus {
+    /*border-radius: 10px;*/
+    /*border: 2px inset;*/
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
+    -ms-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
+    -o-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.65);
     outline: none;
+}
+
+input[type="submit"]:focus {
+    box-shadow: none;
+}
+
+.error-input {
+    /*-webkit-box-shadow: 0px 0px 10px rgb(255, 81, 81);
+    -moz-box-shadow: 0px 0px 10px rgb(255, 81, 81);
+    -ms-box-shadow: 0px 0px 10px rgb(255, 81, 81);
+    -o-box-shadow: 0px 0px 10px rgb(255, 81, 81);
+    box-shadow: 0px 0px 10px rgb(255, 81, 81);*/
+    border: 2px inset red;
 }
 
 /* Footer */
