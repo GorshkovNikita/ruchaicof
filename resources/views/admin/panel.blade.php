@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
-
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -40,5 +39,10 @@
         </div>
     </div>
 
+    <div class="admin-page-content">
+        <div class="container">
+            @yield('admin-page-content')
+        </div>
+    </div>
 
 @stop

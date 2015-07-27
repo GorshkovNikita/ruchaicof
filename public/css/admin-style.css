@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    padding-top: 70px;
+}
+
 .content {
     margin: auto;
     height: auto;

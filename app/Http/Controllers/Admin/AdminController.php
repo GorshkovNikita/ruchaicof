@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +18,8 @@ class AdminController extends Controller
     public function getIndex()
     {
         if (Auth::check() && Auth::user()->role == 'admin') {
-            return view('admin.main');
+            $users = User::all();
+            return view('admin.main')->with('users', $users);
         }
         elseif (Auth::user() != null && Auth::user()->role != 'admin') {
             return Redirect::to('admin/login')->withErrors('Необходимо авторизироваться в качестве администратора.');
