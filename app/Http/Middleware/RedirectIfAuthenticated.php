@@ -34,9 +34,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
+        // Редиректило на домашнюю страницу зачем-то, если авторизирован пользователь
+        // Мне это мешало, поэтому убрал
+        /*if ($this->auth->check()) {
             return redirect('/home');
-        }
+        }*/
 
         return $next($request);
     }
