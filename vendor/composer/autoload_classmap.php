@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddForeignKeysOnCategoriesTable' => $baseDir . '/database/migrations/2015_07_27_162548_add_foreign_keys_on_categories_table.php',
     'AddForeignKeysOnProductsTable' => $baseDir . '/database/migrations/2015_07_27_161322_add_foreign_keys_on_products_table.php',
+    'CategoriesTableSeeder' => $baseDir . '/database/seeds/CategoriesTableSeeder.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2015_07_27_155752_create_categories_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateProductsTable' => $baseDir . '/database/migrations/2015_07_27_160541_create_products_table.php',

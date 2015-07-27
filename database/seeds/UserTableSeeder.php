@@ -11,15 +11,47 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Nikita',
-            'surname' => 'Gorshkov',
-            'email' => 'nikita1104@mail.ru',
-            'password' => bcrypt('12345'),
-            'phone' => '8 (900) 786-23-32',
-            'organization' => 'vizant',
-            'role' => 'admin',
-            'remember_token' => str_random(10)
+        DB::table('Users')->insert([
+            [
+                'name' => 'Петр',
+                'surname' => 'Петров',
+                'email' => 'admin1@mail.ru',
+                'password' => bcrypt('admin'),
+                'phone' => '8 (900) 777-77-77',
+                'organization' => 'ruchaicof',
+                'role' => 'admin',
+                'remember_token' => ''
+            ],
+            [
+                'name' => 'Сидор',
+                'surname' => 'Сидоров',
+                'email' => 'admin2@mail.ru',
+                'password' => bcrypt('admin'),
+                'phone' => '8 (900) 777-77-78',
+                'organization' => 'ruchaicof',
+                'role' => 'admin',
+                'remember_token' => ''
+            ],
+            [
+                'name' => 'Иван',
+                'surname' => 'Иванов',
+                'email' => 'client1@mail.ru',
+                'password' => bcrypt('client'),
+                'phone' => '8 (901) 777-77-77',
+                'organization' => 'neruchaicof',
+                'role' => 'client',
+                'remember_token' => ''
+            ],
+            [
+                'name' => 'Николай',
+                'surname' => 'Николаев',
+                'email' => 'client2@mail.ru',
+                'password' => bcrypt('client'),
+                'phone' => '8 (901) 777-77-78',
+                'organization' => 'neruchaicof',
+                'role' => 'client',
+                'remember_token' => ''
+            ]
         ]);
     }
 }
