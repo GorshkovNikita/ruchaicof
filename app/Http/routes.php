@@ -13,7 +13,7 @@
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController'
+    'password' => 'Auth\PasswordController',
+    'admin' => 'Admin\AdminController',
+    '/' => 'HomeController'
 ]);
-
-Route::controller('/', 'HomeController');
