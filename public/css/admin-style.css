@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    margin: auto;
+    height: auto;
+    overflow: auto;
+}
+
+/* Container */
+
+.container {
+    width: 1000px;
+    margin: auto;
+    height: auto;
+    /* overflow: auto; */
+}

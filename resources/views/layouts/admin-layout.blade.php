@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang='en'>
-<head>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>@yield('title')</title>
-
-    <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            /*margin-top: 5%;*/
-        }
-    </style>
-</head>
-<body>
-<div class='container-fluid'>
-    <div class='row'>
-        @yield('content')
-    </div>
-</div>
-</body>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>@yield('title')</title>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href="{{ asset('css/admin-style.css') }}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class='content'>
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
+    </body>
 </html>
