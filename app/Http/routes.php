@@ -11,9 +11,21 @@
 |
 */
 
+Route::group(['prefix' => 'admin'], function() {
+
+    Route::get('login', 'Admin\AdminController@getLogin');
+
+    Route::group(['middleware' => 'auth'], function() {
+        Route::controllers([
+            'category' => 'CategoriesController',
+            '/' => 'Admin\AdminController'
+        ]);
+    });
+
+});
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
-    'admin' => 'Admin\AdminController',
     '/' => 'HomeController'
 ]);

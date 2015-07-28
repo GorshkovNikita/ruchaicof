@@ -21,3 +21,11 @@ body {
     height: auto;
     /* overflow: auto; */
 }
+
+/* Form Elements */
+
+textarea {
+    width: 400px!important;
+    height: 100px!important;
+    resize: none;
+}

@@ -16,11 +16,6 @@ use App\Http\Middleware\Authenticate;
 class AdminController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['getLogin']]);
-    }
-
     public function getIndex()
     {
         $users = User::all();
@@ -45,5 +40,7 @@ class AdminController extends Controller
         }
 
     }
+
+
 
 }

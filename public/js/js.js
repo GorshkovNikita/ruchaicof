@@ -1,10 +1,12 @@
-$.ajaxSetup(
-{
-    headers:
-    {
-        'X-CSRF-Token': $('input[name="_token"]').val()
-    }
-});
+$(function() {
+    $('.navbar-nav li').each(function () {
+        if (this.getElementsByTagName("a")[0].href == document.location.href) {
+            $(this).addClass("active").siblings().removeClass("active");
+            //$(this).removeClass("menu1-item");
+            /*event.preventDefault();*/
+        }
+    });
+})
 
 $(function () {
     // Slideshow 4

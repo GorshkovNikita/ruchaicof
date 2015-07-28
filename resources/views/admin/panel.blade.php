@@ -18,8 +18,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">Категории</a></li>
+                    <li class="active">{!! link_to('admin', 'Home') !!}</li>
+                    <li>{!! link_to('admin/category', 'Категории') !!}</li>
                     <li><a href="#contact">Продукция</a></li>
                     <li><a href="#users">Пользователи</a></li>
                     <!--<li class="dropdown">
