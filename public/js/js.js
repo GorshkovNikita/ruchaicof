@@ -1,3 +1,4 @@
+// текущий пункт меню
 $(function() {
     $('.navbar-nav li').each(function () {
         if (this.getElementsByTagName("a")[0].href == document.location.href) {
@@ -6,10 +7,24 @@ $(function() {
             /*event.preventDefault();*/
         }
     });
-})
+});
 
+// отображение блока в зависимости от выбранного option
+$(function() {
+    $("#is_final").change(function() {
+        if ($("#is_final_true").is(":selected")) {
+            $("#num_cols").show();
+            $('#submit').val('Далее');
+        } else {
+            $("#num_cols").hide();
+            $("#columns_number").val(0);
+            $('#submit').val('Добавить');
+        }
+    }).trigger('change');
+});
+
+// слайдер
 $(function () {
-    // Slideshow 4
     $("#slider4").responsiveSlides({
         auto: true,
         pager: false,
@@ -23,5 +38,4 @@ $(function () {
             $('.events').append("<li>after event fired.</li>");
         }
     });
-
 });

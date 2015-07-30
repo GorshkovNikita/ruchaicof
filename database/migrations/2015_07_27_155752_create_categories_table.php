@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->boolean('final')->default(1);
+            $table->integer('num_columns')->default(0);
             $table->timestamps();
         });
     }

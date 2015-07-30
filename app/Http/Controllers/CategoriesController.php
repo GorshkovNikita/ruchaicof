@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use Validator;
 use Redirect;
+use Schema;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -50,6 +52,8 @@ class CategoriesController extends Controller
         if ($request->input('parent_id') != "")
             $category->parent_id = $request->input('parent_id');
         $category->description = $request->input('description');
+        $category->final = $request->input('final');
+        $category->num_columns = $request->input('num_columns');
 
         $file = $request->file('image');
         $imageName = $file->getClientOriginalName();
@@ -62,8 +66,48 @@ class CategoriesController extends Controller
 
         $category->save();
 
-        return "Продукт добавлен!";
+        if ($category->final == 0) {
+            $msg = "Категория " . $category->name . " добавлена.";
+            $request->session()->flash('msg', $msg);
+            return Redirect::to('admin/category');
+        }
+        else
+            return Redirect::to('admin/category/addcolumns');
 
+    }
+
+    public function getAddcolumns()
+    {
+        $category = Category::orderBy('created_at', 'desc')->first();
+        return view('admin.category.add_columns')->with('num', $category->num_columns);
+    }
+
+    public function postAddcolumns(Request $request)
+    {
+        $category = Category::orderBy('created_at', 'desc')->first();
+
+        $q = $request->input('name0');
+        $t = $request->input('type' . 1);
+
+        Schema::create($category->table_name, function(Blueprint $table, $category, $request)
+        {
+            $table->foreign('product_id')->references('id')->on('Products');
+            for ($i = 0; $i < $category->num_columns; $i++) {
+                switch ($request->input('type' . $i)) {
+                    case 0:
+                        $table->integer($request->input('name' . $i));
+                        break;
+                    case 1:
+                        $table->string($request->input('name' . $i));
+                        break;
+                    case 2:
+                        $table->text($request->input('name' . $i));
+                        break;
+                }
+            }
+        });
+
+        return Redirect::to('admin/category');
     }
 
     /**
