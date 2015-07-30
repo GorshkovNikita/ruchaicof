@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
-
+use Validator;
+use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -31,8 +32,37 @@ class CategoriesController extends Controller
         return view('admin.category.add');
     }
 
-    public function postAdd()
+    public function postAdd(Request $request)
     {
+
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $category = new Category();
+
+        $category->name = $request->input('name');
+        $category->table_name = $request->input('table_name');
+        if ($request->input('parent_id') != "")
+            $category->parent_id = $request->input('parent_id');
+        $category->description = $request->input('description');
+
+        $file = $request->file('image');
+        $imageName = $file->getClientOriginalName();
+
+        $request->file('image')->move(
+            base_path() . '/public/images/', $imageName
+        );
+
+        $category->image = 'images/' . $imageName;
+
+        $category->save();
+
+        return "Продукт добавлен!";
 
     }
 
@@ -90,5 +120,15 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required',
+            'table_name' => 'required|regex:/(^[A-Za-z0-9 ]+$)+/',
+            'description' => 'required',
+            'image' => 'required'
+        ]);
     }
 }
