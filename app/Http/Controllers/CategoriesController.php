@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Redirect;
 use Schema;
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +22,12 @@ class CategoriesController extends Controller
     public function getIndex()
     {
         $categories = Category::all();
-        return view('admin.category.categories')->with('categories', $categories);
+
+        $list = Schema::getColumnListing('Categories');
+
+        return view('admin.category.categories')
+            ->with(['categories' => $categories,
+                    'list' => $list]);
     }
 
     /**
@@ -86,12 +92,10 @@ class CategoriesController extends Controller
     {
         $category = Category::orderBy('created_at', 'desc')->first();
 
-        $q = $request->input('name0');
-        $t = $request->input('type' . 1);
-
-        Schema::create($category->table_name, function(Blueprint $table, $category, $request)
+        Schema::create($category->table_name, function(Blueprint $table) use ($category, $request)
         {
-            $table->foreign('product_id')->references('id')->on('Products');
+            $table->increments('id');
+            $table->integer('product_id')->unsigned();
             for ($i = 0; $i < $category->num_columns; $i++) {
                 switch ($request->input('type' . $i)) {
                     case 0:
@@ -105,6 +109,11 @@ class CategoriesController extends Controller
                         break;
                 }
             }
+            $table->timestamps();
+        });
+
+        Schema::table($category->table_name, function(Blueprint $table) {
+            $table->foreign('product_id')->references('id')->on('Products');
         });
 
         return Redirect::to('admin/category');

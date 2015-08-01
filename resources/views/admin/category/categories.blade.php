@@ -5,9 +5,12 @@
         <strong>{{ Session::get('msg') }}</strong>
     @endif
     @foreach($categories as $category)
-        <p>
-            {{ $category->name }}
-            <strong>{{ $category->table_name }}</strong>
-        </p>
+        <div>
+            @foreach($list as $item)
+                <p>
+                    {{ $item }} - <strong>{{ $category->$item }}</strong>
+                </p>
+        @endforeach
+        </div>
     @endforeach
 @stop
