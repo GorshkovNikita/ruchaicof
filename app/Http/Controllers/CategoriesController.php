@@ -14,11 +14,6 @@ use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function getIndex()
     {
         $categories = Category::all();
@@ -30,11 +25,6 @@ class CategoriesController extends Controller
                     'list' => $list]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function getAdd()
     {
         return view('admin.category.add');
@@ -119,60 +109,40 @@ class CategoriesController extends Controller
         return Redirect::to('admin/category');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function getShow($id)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function getEdit($id = null)
     {
-        //
+        $category = Category::find($id);
+
+        if ($category != null)
+            return view('admin.category.edit')->with('category', $category);
+        else
+            // TODO: исправить это на вывод сообщения о том, что категории не существует, если будет необходимо
+            return Redirect::to('admin/category');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function postEdit($id)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
+    public function postDelete($id)
     {
-        //
-    }
+        $category = Category::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        if ($category != null) {
+            // TODO: когда в таблице продуктов появятся записи, продумать удаление этих записей
+            Schema::drop($category->table_name);
+            $category->delete();
+            return Redirect::back();
+        }
+        else
+            // TODO: исправить это на вывод сообщения о том, что категории не существует, если будет необходимо
+            return Redirect::to('admin/category');
     }
 
     protected function validator(array $data)
