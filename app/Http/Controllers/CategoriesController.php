@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Property;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use Validator;
@@ -18,11 +19,8 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
 
-        $list = Schema::getColumnListing('Categories');
-
         return view('admin.category.categories')
-            ->with(['categories' => $categories,
-                    'list' => $list]);
+            ->with('categories', $categories);
     }
 
     public function getAdd()
@@ -75,27 +73,33 @@ class CategoriesController extends Controller
     public function getAddcolumns()
     {
         $category = Category::orderBy('created_at', 'desc')->first();
-        return view('admin.category.add_columns')->with('num', $category->num_columns);
+        $properties = Property::all();
+        return view('admin.category.add_columns')
+            ->with('num', $category->num_columns)
+            ->with('properties', $properties);
     }
 
     public function postAddcolumns(Request $request)
     {
         $category = Category::orderBy('created_at', 'desc')->first();
 
-        Schema::create($category->table_name, function(Blueprint $table) use ($category, $request)
+        $propertyIDs = $request->except('_token');
+
+        Schema::create($category->table_name, function(Blueprint $table) use ($category, $request, $propertyIDs)
         {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            for ($i = 0; $i < $category->num_columns; $i++) {
-                switch ($request->input('type' . $i)) {
+            foreach($propertyIDs as $propertyID) {
+                $property = Property::find($propertyID);
+                switch ($property->type) {
                     case 0:
-                        $table->integer($request->input('name' . $i));
+                        $table->integer($property->real_name);
                         break;
                     case 1:
-                        $table->string($request->input('name' . $i));
+                        $table->string($property->real_name);
                         break;
                     case 2:
-                        $table->text($request->input('name' . $i));
+                        $table->text($property->real_name);
                         break;
                 }
             }

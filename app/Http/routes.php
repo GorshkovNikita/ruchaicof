@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['middleware' => 'auth'], function() {
         Route::controllers([
             'category' => 'CategoriesController',
+            'property' => 'PropertiesController',
             '/' => 'Admin\AdminController'
         ]);
     });

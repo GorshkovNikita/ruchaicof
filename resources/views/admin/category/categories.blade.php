@@ -1,6 +1,7 @@
 @extends('admin.panel')
 
 @section('admin-page-content')
+    <h1>Категории</h1>
     @if (Session::has('msg'))
         <strong>{{ Session::get('msg') }}</strong>
         <br>
