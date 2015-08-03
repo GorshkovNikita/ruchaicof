@@ -32,7 +32,6 @@ class CategoriesController extends Controller
 
     public function postAdd(Request $request)
     {
-
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
@@ -52,18 +51,19 @@ class CategoriesController extends Controller
         $category->num_columns = $request->input('num_columns');
 
         $file = $request->file('image');
-        $imageName = $file->getClientOriginalName();
+        $imageExtension = $file->getClientOriginalExtension();
+        $imageName = $category->table_name . '.' . $imageExtension;
 
         $request->file('image')->move(
-            base_path() . '/public/images/', $imageName
+            base_path() . '/public/images/categories/', $imageName
         );
 
-        $category->image = 'images/' . $imageName;
+        $category->image = 'images/categories/' . $imageName;
 
         $category->save();
 
         if ($category->final == 0) {
-            $msg = "Категория " . $category->name . " добавлена.";
+            $msg = "Категория \"" . $category->name . "\" добавлена.";
             $request->session()->flash('msg', $msg);
             return Redirect::to('admin/category');
         }

@@ -3,6 +3,7 @@
 @section('admin-page-content')
     @if (Session::has('msg'))
         <strong>{{ Session::get('msg') }}</strong>
+        <br>
     @endif
     <a class="btn btn-primary" href="{{ url('admin/category/add') }}">Добавить категорию</a>
     <table data-toggle="table" data-height="299" class="table table-hover">
