@@ -14,7 +14,7 @@
                 <th>Название</th>
                 <th>Название для таблицы</th>
                 <th>Тип</th>
-                <th>Действие</th>
+                <!--<th>Действие</th>-->
             </tr>
         </thead>
         <tbody>
@@ -38,13 +38,13 @@
                             {{ 'Текст' }}
                         @endif
                     </td>
-                    <td>
+                    <!--<td>
                         <a href="{{ url('admin/property/edit/'.$property->id) }}" class="btn btn-primary" style="margin-left: 20px">Изменить</a>
                         <form method="POST" action="property/delete/{{ $property->id }}" style="float: left">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Удалить">
                         </form>
-                    </td>
+                    </td>-->
                 </tr>
             @endforeach
         </tbody>

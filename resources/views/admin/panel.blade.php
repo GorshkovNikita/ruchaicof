@@ -22,6 +22,7 @@
                     <li>{!! link_to('admin/category', 'Категории') !!}</li>
                     <li><a href="#contact">Продукция</a></li>
                     <li><a href="#users">Пользователи</a></li>
+                    <li>{!! link_to('admin/property', 'Характеристики') !!}</li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                         <ul class="dropdown-menu">

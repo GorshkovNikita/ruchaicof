@@ -30,7 +30,7 @@ class CategoriesController extends Controller
 
     public function postAdd(Request $request)
     {
-        $validator = $this->validator($request->all());
+        $validator = $this->validatorForAdd($request->all());
 
         if ($validator->fails()) {
             return Redirect::back()
@@ -110,12 +110,10 @@ class CategoriesController extends Controller
             $table->foreign('product_id')->references('id')->on('Products');
         });
 
-        return Redirect::to('admin/category');
-    }
+        $msg = "Категория \"" . $category->name . "\" добавлена.";
+        $request->session()->flash('msg', $msg);
 
-    public function getShow($id)
-    {
-        //
+        return Redirect::to('admin/category');
     }
 
     public function getEdit($id = null)
@@ -129,8 +127,40 @@ class CategoriesController extends Controller
             return Redirect::to('admin/category');
     }
 
-    public function postEdit($id)
-    {
+    public function postEdit(Request $request, $id) {
+        $validator = $this->validatorForEdit($request->all());
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $category = Category::find($id);
+
+        $category->name = $request->input('name');
+        $category->table_name = $request->input('table_name');
+        $category->description = $request->input('description');
+
+        // TODO: не работает загрузка файла - исправить
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            //$imageExtension = $file->getClientOriginalExtension();
+            //$imageName = $category->table_name . '.' . $imageExtension;
+
+            $request->file('image')->move(
+                base_path() . '/public/' . $category->image
+            );
+
+            // $category->image = 'images/categories/' . $imageName;
+        }
+
+        $category->save();
+
+        $msg = "Категория \"" . $category->name . "\" изменена.";
+        $request->session()->flash('msg', $msg);
+
+        return Redirect::to('admin/category');
 
     }
 
@@ -149,13 +179,22 @@ class CategoriesController extends Controller
             return Redirect::to('admin/category');
     }
 
-    protected function validator(array $data)
+    protected function validatorForAdd(array $data)
     {
         return Validator::make($data, [
             'name' => 'required',
             'table_name' => 'required|regex:/(^[A-Za-z0-9 ]+$)+/',
             'description' => 'required',
             'image' => 'required'
+        ]);
+    }
+
+    protected function validatorForEdit(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required',
+            'table_name' => 'required|regex:/(^[A-Za-z0-9 ]+$)+/',
+            'description' => 'required'
         ]);
     }
 }
