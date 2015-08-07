@@ -56,17 +56,17 @@ class CategoriesController extends Controller
             base_path() . '/public/images/categories/', $imageName
         );
 
-        $category->image = 'images/categories/' . $imageName;
+        $category->image = $imageName;
 
         $category->save();
 
         if ($category->final == 0) {
             $msg = "Категория \"" . $category->name . "\" добавлена.";
-            $request->session()->flash('msg', $msg);
-            return Redirect::to('admin/category');
+            return redirect('admin/category')
+                ->with('msg', $msg);
         }
         else
-            return Redirect::to('admin/category/addcolumns');
+            return redirect('admin/category/addcolumns');
 
     }
 
@@ -111,9 +111,9 @@ class CategoriesController extends Controller
         });
 
         $msg = "Категория \"" . $category->name . "\" добавлена.";
-        $request->session()->flash('msg', $msg);
 
-        return Redirect::to('admin/category');
+        return redirect('admin/category')
+            ->with('msg', $msg);
     }
 
     public function getEdit($id = null)
@@ -124,7 +124,7 @@ class CategoriesController extends Controller
             return view('admin.category.edit')->with('category', $category);
         else
             // TODO: исправить это на вывод сообщения о том, что категории не существует, если будет необходимо
-            return Redirect::to('admin/category');
+            return redirect('admin/category');
     }
 
     public function postEdit(Request $request, $id) {
@@ -142,41 +142,39 @@ class CategoriesController extends Controller
         $category->table_name = $request->input('table_name');
         $category->description = $request->input('description');
 
-        // TODO: не работает загрузка файла - исправить
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            //$imageExtension = $file->getClientOriginalExtension();
-            //$imageName = $category->table_name . '.' . $imageExtension;
-
             $request->file('image')->move(
-                base_path() . '/public/' . $category->image
+                base_path() . '/public/images/categories/' , $category->image
             );
-
-            // $category->image = 'images/categories/' . $imageName;
         }
 
         $category->save();
 
         $msg = "Категория \"" . $category->name . "\" изменена.";
-        $request->session()->flash('msg', $msg);
 
-        return Redirect::to('admin/category');
+        return redirect('admin/category')
+            ->with('msg', $msg);
 
     }
 
-    public function postDelete($id)
+    public function postDelete(Request $request, $id)
     {
         $category = Category::find($id);
 
         if ($category != null) {
             // TODO: когда в таблице продуктов появятся записи, продумать удаление этих записей
-            Schema::drop($category->table_name);
+            if ($category->final == 1)
+                Schema::drop($category->table_name);
+            $msg = "Категория \"" . $category->name . "\" удалена.";
             $category->delete();
-            return Redirect::back();
+            return redirect('admin/category')
+                ->with('msg', $msg);
         }
-        else
-            // TODO: исправить это на вывод сообщения о том, что категории не существует, если будет необходимо
-            return Redirect::to('admin/category');
+        else {
+            $msg = "Категории с id = " . $id . " не существует.";
+            return redirect('admin/category')
+                ->with('msg', $msg);
+        }
     }
 
     protected function validatorForAdd(array $data)

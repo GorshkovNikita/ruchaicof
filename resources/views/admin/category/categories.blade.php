@@ -2,8 +2,8 @@
 
 @section('admin-page-content')
     <h1>Категории</h1>
-    @if (Session::has('msg'))
-        <strong>{{ Session::get('msg') }}</strong>
+    @if (session('msg'))
+        <strong>{{ session('msg') }}</strong>
         <br>
     @endif
     <a class="btn btn-primary" href="{{ url('admin/category/add') }}">Добавить категорию</a>

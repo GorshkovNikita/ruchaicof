@@ -46,7 +46,7 @@
         </div>
 
         <div class='form-group'>
-            <input id="submit" type="submit" value="Добавить" class="btn btn-primary">
+            <input id="submit" type="submit" value="Изменить" class="btn btn-primary">
         </div>
 
     </form>
