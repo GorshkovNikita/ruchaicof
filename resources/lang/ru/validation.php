@@ -55,9 +55,9 @@ return [
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
-    'numeric'              => 'The :attribute must be a number.',
-    'regex'                => 'The :attribute format is invalid.',
-    'required'             => 'В поле :attribute требуется ввести значение.',
+    'numeric'              => 'В это поле требуется ввести число.',
+    'regex'                => 'Неверный формат значения.',
+    'required'             => 'В это поле требуется ввести значение.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
@@ -72,7 +72,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'Такой :attribute уже занят.',
+    'unique'               => 'Такое значение уже занято.',
     'url'                  => 'The :attribute format is invalid.',
 
     /*

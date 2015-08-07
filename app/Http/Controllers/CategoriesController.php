@@ -101,6 +101,8 @@ class CategoriesController extends Controller
                     case 2:
                         $table->text($property->real_name);
                         break;
+                    case 3:
+                        $table->date($property->real_name);
                 }
             }
             $table->timestamps();
@@ -154,7 +156,6 @@ class CategoriesController extends Controller
 
         return redirect('admin/category')
             ->with('msg', $msg);
-
     }
 
     public function postDelete(Request $request, $id)
@@ -180,8 +181,8 @@ class CategoriesController extends Controller
     protected function validatorForAdd(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required',
-            'table_name' => 'required|regex:/(^[A-Za-z0-9 ]+$)+/',
+            'name' => 'required|unique:categories',
+            'table_name' => 'required|unique:categories|regex:/(^[A-Za-z ]+$)+/',
             'description' => 'required',
             'image' => 'required'
         ]);
@@ -190,9 +191,16 @@ class CategoriesController extends Controller
     protected function validatorForEdit(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required',
-            'table_name' => 'required|regex:/(^[A-Za-z0-9 ]+$)+/',
+            'name' => 'required|unique:categories',
+            'table_name' => 'required|unique:categories|regex:/(^[A-Za-z ]+$)+/',
             'description' => 'required'
+        ]);
+    }
+
+    protected function validatorForAddColumns(array $data)
+    {
+        return Validator::make($data, [
+            // TODO: написать валидатор для добавления колонок - значения должны быть различны
         ]);
     }
 }

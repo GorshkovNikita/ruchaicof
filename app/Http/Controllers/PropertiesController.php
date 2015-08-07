@@ -42,16 +42,16 @@ class PropertiesController extends Controller
         $property->save();
 
         $msg = "Характеристика \"" . $property->name . "\" добавлена.";
-        $request->session()->flash('msg', $msg);
 
-        return Redirect::to('admin/property');
+        return Redirect::to('admin/property')
+            ->with('msg', $msg);
     }
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required',
-            'real_name' => 'required|regex:/(^[A-Za-z ]+$)+/',
+            'name' => 'required|unique:properties',
+            'real_name' => 'required|unique:properties|regex:/(^[A-Za-z ]+$)+/',
             'type' => 'required|numeric'
         ]);
     }

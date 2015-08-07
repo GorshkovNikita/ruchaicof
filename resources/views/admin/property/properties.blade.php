@@ -34,8 +34,10 @@
                             {{ 'Число' }}
                         @elseif($property->type == 1)
                             {{ 'Строка' }}
-                        @else
+                        @elseif($property->type == 2)
                             {{ 'Текст' }}
+                        @else
+                            {{ 'Дата' }}
                         @endif
                     </td>
                     <!--<td>

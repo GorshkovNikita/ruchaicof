@@ -10,6 +10,9 @@
             <label>
                 Название:
                 <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                @foreach ($errors->get('name') as $error)
+                    <span class="bg-danger">{{ $error }}</span>
+                @endforeach
             </label>
         </div>
 
@@ -17,6 +20,9 @@
             <label>
                 Английское название:
                 <input type="text" name="real_name" class="form-control" value="{{ old('real_name') }}">
+                @foreach ($errors->get('real_name') as $error)
+                    <span class="bg-danger">{{ $error }}</span>
+                @endforeach
             </label>
         </div>
 
@@ -26,7 +32,11 @@
                     <option value="0" @if (old('type') == 0) {{ 'checked' }} @endif>Число</option>
                     <option value="1" @if (old('type') == 1) {{ 'checked' }} @endif>Строка</option>
                     <option value="2" @if (old('type') == 2) {{ 'checked' }} @endif>Текст</option>
+                    <option value="3" @if (old('type') == 3) {{ 'checked' }} @endif>Дата</option>
                 </select>
+                @foreach ($errors->get('type') as $error)
+                    <span class="bg-danger">{{ $error }}</span>
+                @endforeach
             </label>
         </div>
 
