@@ -16,6 +16,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('login', 'Admin\AdminController@getLogin');
 
     Route::group(['middleware' => 'auth'], function() {
+        Route::get('product/add', 'ProductsController@getAdd');
+        Route::get('product/addproperties', 'ProductsController@getAddproperties');
         Route::get('product/{id}', 'ProductsController@getIndex');
         Route::controllers([
             'category' => 'CategoriesController',
@@ -25,7 +27,6 @@ Route::group(['prefix' => 'admin'], function() {
             '/' => 'Admin\AdminController'
         ]);
     });
-
 });
 
 Route::controllers([

@@ -1,7 +1,7 @@
 @extends('admin.panel')
 
 @section('admin-page-content')
-    <h1>Добавить характеристику продукта</h1>
+    <h1>Добавление характеристики продукта</h1>
     <form method="POST" action="{{ url('admin/property/add') }}">
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
