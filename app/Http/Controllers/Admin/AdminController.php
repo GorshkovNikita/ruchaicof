@@ -24,7 +24,6 @@ class AdminController extends Controller
 
     public function getLogin()
     {
-
         // логику проверки на авторизацию при запросе на страницу admin/login не стал выносить в middleware,
         // так как это всего одна страница, проще написать это здесь
         // Потом как-нибудь, возможно, вынесу в middleware.

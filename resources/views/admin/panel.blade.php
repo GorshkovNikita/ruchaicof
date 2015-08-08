@@ -14,14 +14,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">РуЧайКоф</a>
+                {!! link_to('admin', 'РуЧайКоф', ['class' => 'navbar-brand']) !!}
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">{!! link_to('admin', 'Home') !!}</li>
+                    <!--<li class="active">{!! link_to('admin', 'Home') !!}</li>-->
                     <li>{!! link_to('admin/category', 'Категории') !!}</li>
-                    <li><a href="#contact">Продукция</a></li>
-                    <li><a href="#users">Пользователи</a></li>
+                    <li>{!! link_to('admin/product', 'Продукты') !!}</li>
+                    <li>{!! link_to('admin/user', 'Пользователи') !!}</li>
                     <li>{!! link_to('admin/property', 'Характеристики') !!}</li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

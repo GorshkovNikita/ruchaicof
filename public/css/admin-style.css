@@ -29,3 +29,22 @@ textarea {
     height: 100px!important;
     resize: none;
 }
+
+.admin-page-content ul {
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.admin-page-content ul > li {
+    list-style: none;
+}
+
+.admin-page-content ul > li > a {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.admin-page-content ul > li > a:active {
+    color: #428bca;
+    text-decoration: none;
+}

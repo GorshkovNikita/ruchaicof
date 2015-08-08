@@ -16,9 +16,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('login', 'Admin\AdminController@getLogin');
 
     Route::group(['middleware' => 'auth'], function() {
+        Route::get('product/{id}', 'ProductsController@getIndex');
         Route::controllers([
             'category' => 'CategoriesController',
             'property' => 'PropertiesController',
+            'product' => 'ProductsController',
+            'user' => 'UsersController',
             '/' => 'Admin\AdminController'
         ]);
     });
