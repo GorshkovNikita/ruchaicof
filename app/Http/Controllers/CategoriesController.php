@@ -58,22 +58,25 @@ class CategoriesController extends Controller
 
         $category->image = $imageName;
 
-        $category->save();
-
         if ($category->final == 0) {
+            $category->save();
             $msg = "Категория \"" . $category->name . "\" добавлена.";
             return redirect('admin/category')
                 ->with('msg', $msg);
         }
-        else
+        else {
+            $request->session()->flash('category', $category);
             return redirect('admin/category/addcolumns');
+        }
 
     }
 
-    public function getAddcolumns()
+    public function getAddcolumns(Request $request)
     {
-        $category = Category::orderBy('created_at', 'desc')->first();
+        $category = session('category');
+        $request->session()->flash('category', $category);
         $properties = Property::all();
+
         return view('admin.category.add_columns')
             ->with('num', $category->num_columns)
             ->with('properties', $properties);
@@ -81,7 +84,8 @@ class CategoriesController extends Controller
 
     public function postAddcolumns(Request $request)
     {
-        $category = Category::orderBy('created_at', 'desc')->first();
+        $category = session('category');
+        $category->save();
 
         $propertyIDs = $request->except('_token');
 
