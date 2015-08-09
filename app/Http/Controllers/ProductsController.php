@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -29,10 +30,7 @@ class ProductsController extends Controller
     {
         $categories = Category::where('final', 1)->get();
         return view('admin.product.add')
-            ->with([
-                'categories' => $categories,
-
-            ]);
+            ->with('categories', $categories);
     }
 
     public function postAdd(Request $request)
@@ -61,14 +59,41 @@ class ProductsController extends Controller
 
         $product->image = $imageName;
 
-        $product->save();
+        //$product->save();
 
-        return redirect('admin/product/addproperties');
+        return redirect('admin/product/addproperties')
+            ->with('product', $product);
     }
 
-    public function getAddproperties()
+    public function getAddproperties(Request $request)
     {
-       return view('admin.product.add_properties');
+        $product = session('product');
+
+        if (!isset($product)) {
+            return redirect('admin/product/add');
+        }
+
+        $request->session()->flash('product', $product);
+        $category = Category::where('id', $product->category_id)->first();
+        $columns = Schema::getColumnListing($category->table_name);
+        // здесь удаляются имена ненужных столбцов:
+        // id, product_id, created_at, updated_at
+        array_splice($columns, 0, 2);
+        array_splice($columns, count($columns) - 2, 2);
+        $properties = [];
+        foreach($columns as $column) {
+            $property = Property::where('real_name', $column)->first();
+            array_push($properties, $property);
+        }
+        $n = $properties[0]->name;
+        return view('admin.product.add_properties')
+            ->with('properties', $properties);
+    }
+
+    public function postAddproperties(Request $request)
+    {
+        $product = session('product');
+        $product->save();
     }
 
     public function getEdit($id)
@@ -89,9 +114,9 @@ class ProductsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'category_id' => 'required',
-            'short_description' => 'required',
+            'short_description' => 'required|max:255',
             'description' => 'required',
             'image' => 'required'
         ]);

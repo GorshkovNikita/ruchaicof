@@ -50,8 +50,8 @@ class PropertiesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|unique:properties',
-            'real_name' => 'required|unique:properties|regex:/(^[A-Za-z ]+$)+/',
+            'name' => 'required|unique:properties|max:255',
+            'real_name' => 'required|max:255|unique:properties|regex:/(^[A-Za-z ]+$)+/',
             'type' => 'required|numeric'
         ]);
     }

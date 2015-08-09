@@ -185,8 +185,8 @@ class CategoriesController extends Controller
     protected function validatorForAdd(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|unique:categories',
-            'table_name' => 'required|unique:categories|regex:/(^[A-Za-z ]+$)+/',
+            'name' => 'required|max:255|unique:categories',
+            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z ]+$)+/',
             'description' => 'required',
             'image' => 'required'
         ]);
@@ -195,8 +195,8 @@ class CategoriesController extends Controller
     protected function validatorForEdit(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|unique:categories',
-            'table_name' => 'required|unique:categories|regex:/(^[A-Za-z ]+$)+/',
+            'name' => 'required|max:255|unique:categories',
+            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z ]+$)+/',
             'description' => 'required'
         ]);
     }
