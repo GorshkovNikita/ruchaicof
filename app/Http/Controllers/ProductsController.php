@@ -11,6 +11,7 @@ use Validator;
 use App\Product;
 use App\Category;
 use Schema;
+use DB;
 
 
 class ProductsController extends Controller
@@ -85,15 +86,22 @@ class ProductsController extends Controller
             $property = Property::where('real_name', $column)->first();
             array_push($properties, $property);
         }
-        $n = $properties[0]->name;
-        return view('admin.product.add_properties')
-            ->with('properties', $properties);
+        $request->session()->flash('properties', $properties);
+        return view('admin.product.add_properties');
     }
 
     public function postAddproperties(Request $request)
     {
         $product = session('product');
         $product->save();
+        $properties = session('properties');
+        $category = Category::where('id', $product->category_id)->first();
+        $data = $request->except('_token');
+        $data = array_merge(['id' => 0, 'product_id' => $product->id], $data);
+        DB::table($category->table_name)->insert($data);
+        $msg = "Продукт \"" . $product->name . "\" добавлен";
+        return redirect('admin/product')
+            ->with('msg', $msg);
     }
 
     public function getEdit($id)

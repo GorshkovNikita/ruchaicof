@@ -5,11 +5,19 @@
     <form method="POST" action="{{ url('/admin/product/addproperties') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        @foreach($properties as $property)
+        @foreach(session('properties') as $property)
             <div class="form-group">
                 <label>
                     {{ $property->name }}
-                    <input type="text" name="{{ $property->real_name }}" value="{{ old($property->real_name) }}" class="form-control" autocomplete="off">
+                    @if($property->type == 0 || $property->type == 1)
+                        <input type="text" name="{{ $property->real_name }}" value="{{ old($property->real_name) }}" class="form-control" autocomplete="off">
+                    @elseif($property->type == 2)
+                        <textarea name="{{ $property->real_name }}" class="form-control" autocomplete="off">
+                            {{ old($property->real_name) }}
+                        </textarea>
+                    @elseif($property->type == 3)
+                        <input type="date" name="{{ $property->real_name }}" class="form-control" autocomplete="off" value="{{ old($property->real_name) }}">
+                    @endif
                 </label>
             </div>
         @endforeach
