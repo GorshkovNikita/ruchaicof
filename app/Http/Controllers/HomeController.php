@@ -21,31 +21,32 @@ class HomeController extends Controller
         return view('home.about');
     }
 
-    public function getProducts($type = null)
+    public function getProducts($subcategory = null)
     {
-        /*
-        switch ($type)
-        {
-            case null:
-                return view('home.products');
-            case "tea":
-                return view('products.tea');
-            case "coffee":
-                return view('products.coffee');
-            case "china":
-                return view('products.china');
-            case "crystal":
-                return view('products.crystal');
-            case "food":
-                return view('products.food');
-        }*/
-        /*$categories = Category::where('parent_id', 15)->get();
-        return view('home.products')
-            ->with('categories', $categories);*/
-
-        $products = Product::where('category_id', 16)->get();
-        return view('products.tea')
-            ->with('products', $products);
+        if ($subcategory == null) {
+            $categories = Category::where('parent_id', null)->get();
+            return view('home.products')
+                ->with([
+                    'categories' => $categories,
+                    'pageTitle' => 'Наша продукция'
+                ]);
+        }
+        else {
+            $parent = Category::where('table_name', $subcategory)->first();
+            if ($parent->final == 0) {
+                $categories = Category::where('parent_id', $parent->id)->get();
+                return view('home.products')
+                    ->with([
+                        'categories' => $categories,
+                        'pageTitle' => $parent->name
+                    ]);
+            }
+            else {
+                $products = Product::where('category_id', $parent->id)->get();
+                return view('products.tea')
+                    ->with('products', $products);
+            }
+        }
     }
 
     public function getOffers()

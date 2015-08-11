@@ -170,7 +170,6 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         if ($category != null) {
-            // TODO: когда в таблице продуктов появятся записи, продумать удаление этих записей
             if ($category->final == 1) {
                 Schema::drop($category->table_name);
                 Product::where('category_id', $category->id)->delete();
@@ -192,7 +191,7 @@ class CategoriesController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255|unique:categories',
-            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z ]+$)+/',
+            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z_]+$)+/',
             'description' => 'required',
             'image' => 'required'
         ]);
@@ -202,7 +201,7 @@ class CategoriesController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255|unique:categories',
-            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z ]+$)+/',
+            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z_]+$)+/',
             'description' => 'required'
         ]);
     }

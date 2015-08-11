@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <h2 class="page-title">Наша продукция</h2>
+    <h2 class="page-title">{{ $pageTitle }}</h2>
     <div class="page-wrapper products">
         @foreach($categories as $category)
             <div>
@@ -14,7 +14,7 @@
                 <p>
                     {{ $category->description }}
                 </p>
-                {!! link_to('products/tea', 'Узнать подробнее >>') !!}
+                {!! link_to('products/' . strtolower($category->table_name), 'Узнать подробнее >>') !!}
             </div>
         @endforeach
     </div>
