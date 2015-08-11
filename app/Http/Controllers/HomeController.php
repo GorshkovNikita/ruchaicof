@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Category;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -21,6 +23,7 @@ class HomeController extends Controller
 
     public function getProducts($type = null)
     {
+        /*
         switch ($type)
         {
             case null:
@@ -35,7 +38,14 @@ class HomeController extends Controller
                 return view('products.crystal');
             case "food":
                 return view('products.food');
-        }
+        }*/
+        /*$categories = Category::where('parent_id', 15)->get();
+        return view('home.products')
+            ->with('categories', $categories);*/
+
+        $products = Product::where('category_id', 16)->get();
+        return view('products.tea')
+            ->with('products', $products);
     }
 
     public function getOffers()

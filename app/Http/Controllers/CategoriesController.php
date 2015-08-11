@@ -10,6 +10,7 @@ use Validator;
 use Redirect;
 use Schema;
 use DB;
+use App\Product;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +26,9 @@ class CategoriesController extends Controller
 
     public function getAdd()
     {
-        return view('admin.category.add');
+        $categories = Category::where('final', 0)->get();
+        return view('admin.category.add')
+            ->with('categories', $categories);
     }
 
     public function postAdd(Request $request)
@@ -168,10 +171,13 @@ class CategoriesController extends Controller
 
         if ($category != null) {
             // TODO: когда в таблице продуктов появятся записи, продумать удаление этих записей
-            if ($category->final == 1)
+            if ($category->final == 1) {
                 Schema::drop($category->table_name);
-            $msg = "Категория \"" . $category->name . "\" удалена.";
+                Product::where('category_id', $category->id)->delete();
+            }
             $category->delete();
+
+            $msg = "Категория \"" . $category->name . "\" удалена.";
             return redirect('admin/category')
                 ->with('msg', $msg);
         }

@@ -31,8 +31,12 @@
                 Родительская категория:
                 <select name="parent_id" class="form-control">
                     <option value="" @if (old('parent_id') == "") {{ 'selected' }} @endif>-- Это корневая категория --</option>
-                    <option value="1" @if (old('parent_id') == 1) {{ 'selected' }} @endif>Чай</option>
-                    <option value="2" @if (old('parent_id') == 2) {{ 'selected' }} @endif>Кофе</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                            @if (old('parent_id') == $category->id) {{ 'selected' }} @endif>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
                 </select>
             </label>
         </div>
