@@ -11,13 +11,13 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Categories')->insert([
+        /*DB::table('Categories')->insert([
             [
                 'parent_id' => null,
                 'name' => 'Чай',
                 'table_name' => 'Tea',
                 'description' => 'У нас вы можете заказать офигенный чай.',
-                'image' => 'images/tea_prod.png',
+                'image' => 'tea.png',
                 'final' => 1
             ],
             [
@@ -25,9 +25,9 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Кофе',
                 'table_name' => 'Coffee',
                 'description' => 'У нас вы можете заказать офигенный кофе.',
-                'image' => 'images/coffee_prod.png',
+                'image' => 'coffee.png',
                 'final' => 1
             ]
-        ]);
+        ]);*/
     }
 }
