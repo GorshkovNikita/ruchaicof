@@ -33,4 +33,5 @@ return array(
     'Bestmomo\\Scafold\\' => array($vendorDir . '/bestmomo/scafold/src'),
     'Barryvdh\\LaravelIdeHelper\\' => array($vendorDir . '/barryvdh/laravel-ide-helper/src'),
     'App\\' => array($baseDir . '/app'),
+    'Alexusmai\\Ruslug\\' => array($vendorDir . '/alexusmai/ruslug/src'),
 );

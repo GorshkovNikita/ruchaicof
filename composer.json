@@ -11,7 +11,8 @@
         "laravelcollective/html": "^5.1",
         "doctrine/dbal": "^2.5",
         "twbs/bootstrap": "^3.3",
-        "bestmomo/scafold": "dev-master"
+        "bestmomo/scafold": "dev-master",
+        "alexusmai/ruslug": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

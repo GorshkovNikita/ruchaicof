@@ -13,6 +13,7 @@ use DB;
 use App\Product;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Slug;
 
 class CategoriesController extends Controller
 {
@@ -44,7 +45,7 @@ class CategoriesController extends Controller
         $category = new Category();
 
         $category->name = $request->input('name');
-        $category->table_name = $request->input('table_name');
+        $category->table_name = Slug::make($request->input('name'));
         if ($request->input('parent_id') != "")
             $category->parent_id = $request->input('parent_id');
         $category->description = $request->input('description');
@@ -191,7 +192,6 @@ class CategoriesController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255|unique:categories',
-            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z_]+$)+/',
             'description' => 'required',
             'image' => 'required'
         ]);
@@ -201,7 +201,6 @@ class CategoriesController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255|unique:categories',
-            'table_name' => 'required|max:255|unique:categories|regex:/(^[A-Za-z_]+$)+/',
             'description' => 'required'
         ]);
     }

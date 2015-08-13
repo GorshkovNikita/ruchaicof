@@ -5,8 +5,6 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Cache;
-use Redirect;
 
 trait AuthenticatesUsers
 {
@@ -60,23 +58,7 @@ trait AuthenticatesUsers
             $this->incrementLoginAttempts($request);
         }
 
-        // изначально было в фреймворке
-        // неочень понятно куда и зачем редиректит, да и фиг с ним
-        /* return redirect($this->loginPath())
-            ->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
-                $this->loginUsername() => $this->getFailedLoginMessage(),
-            ]);*/
-        if ($request->is('auth/register'))
-        {
-            return Redirect::to('/')
-                ->withInput($request->only($this->loginUsername(), 'remember'))
-                ->withErrors([
-                    $this->loginUsername() => $this->getFailedLoginMessage(),
-                ]);
-        }
-        // редирект на предыдущую страницу с возникошими ошибками
-        return Redirect::back()
+        return redirect($this->loginPath())
             ->withInput($request->only($this->loginUsername(), 'remember'))
             ->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
@@ -100,11 +82,7 @@ trait AuthenticatesUsers
             return $this->authenticated($request, Auth::user());
         }
 
-        // было изначально в фреймворке
-        //return redirect()->intended($this->redirectPath());
-
-        // я сделал редирект на предыдущую страницу
-        return Redirect::back();
+        return redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -139,11 +117,7 @@ trait AuthenticatesUsers
     {
         Auth::logout();
 
-        // было изначально в фреймворке
-        //return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
-
-        // я сделал редирект на предыдущую страницу
-        return Redirect::back();
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 
     /**

@@ -16,7 +16,7 @@
             </label>
         </div>
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <label>
                 Английское название:
                 <input type="text" name="real_name" class="form-control" value="{{ old('real_name') }}">
@@ -24,10 +24,11 @@
                     <span class="bg-danger">{{ $error }}</span>
                 @endforeach
             </label>
-        </div>
+        </div>-->
 
         <div class="form-group">
             <label>
+                Тип значения:
                 <select name="type" class="form-control" >
                     <option value="0" @if (old('type') == 0) {{ 'checked' }} @endif>Число</option>
                     <option value="1" @if (old('type') == 1) {{ 'checked' }} @endif>Строка</option>

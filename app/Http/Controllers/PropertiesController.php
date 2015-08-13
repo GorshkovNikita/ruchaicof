@@ -8,6 +8,7 @@ use Redirect;
 use App\Property;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Slug;
 
 class PropertiesController extends Controller
 {
@@ -36,7 +37,7 @@ class PropertiesController extends Controller
         $property = new Property();
 
         $property->name = $request->input('name');
-        $property->real_name = strtolower($request->input('real_name'));
+        $property->real_name = Slug::make($request->input('name'));
         $property->type = $request->input('type');
 
         $property->save();
@@ -51,7 +52,6 @@ class PropertiesController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|unique:properties|max:255',
-            'real_name' => 'required|max:255|unique:properties|regex:/(^[A-Za-z ]+$)+/',
             'type' => 'required|numeric'
         ]);
     }

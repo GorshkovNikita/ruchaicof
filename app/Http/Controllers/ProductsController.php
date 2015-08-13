@@ -12,6 +12,7 @@ use App\Product;
 use App\Category;
 use Schema;
 use DB;
+use Slug;
 
 
 class ProductsController extends Controller
@@ -53,7 +54,7 @@ class ProductsController extends Controller
 
         $file = $request->file('image');
         $imageExtension = $file->getClientOriginalExtension();
-        $imageName = $product->name . '.' . $imageExtension;
+        $imageName = Slug::make($product->name) . '.' . $imageExtension;
         $request->file('image')->move(
             base_path() . '/public/images/products/', $imageName
         );

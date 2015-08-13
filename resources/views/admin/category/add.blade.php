@@ -16,7 +16,7 @@
             </label>
         </div>
 
-        <div class='form-group'>
+        <!--<div class='form-group'>
             <label>
                 Английское название:
                 <input type="text" name="table_name" id="password" value="{{ old('table_name') }}" class="form-control" autocomplete="off">
@@ -24,7 +24,7 @@
                     <span class="bg-danger">{{ $error }}</span>
                 @endforeach
             </label>
-        </div>
+        </div>-->
 
         <div class='form-group'>
             <label>
