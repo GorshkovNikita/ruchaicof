@@ -173,16 +173,20 @@ class CategoriesController extends Controller
 
     public function postDelete(Request $request, $id)
     {
-        // TODO: протестировать удаление родительской категории
-        // 2 варианта:
-        // 1. Удалить ее и все подкатегории и товары
-        // 2. Запретить удаление
         $category = Category::find($id);
 
         if ($category != null) {
             if ($category->final == 1) {
                 Schema::drop($category->table_name);
                 Product::where('category_id', $category->id)->delete();
+            }
+            else {
+                $sub_categories = Category::where('parent_id', $category->id)->get();
+                if (count($sub_categories) > 0) {
+                    $msg = "Нельзя удалить категорию \"" . $category->name . "\", так как она содержит другие подкатегории.";
+                    return redirect('admin/category')
+                        ->with('msg', $msg);
+                }
             }
             $category->delete();
 
