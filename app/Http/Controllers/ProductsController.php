@@ -19,8 +19,16 @@ class ProductsController extends Controller
 {
     public function getIndex($id = null)
     {
-        if ($id == null)
-            return view('admin.product.products');
+        if ($id == null) {
+            //$products = Product::with(['categories'])->get();
+
+            $products = DB::table('products')
+                ->join('categories', 'categories.id', '=', 'products.category_id')
+                ->select('products.*', 'categories.name as category_name')
+                ->get();
+            return view('admin.product.products')
+                ->with('products', $products);
+        }
         else {
             $product = Product::find($id);
             return view('admin.product.product')

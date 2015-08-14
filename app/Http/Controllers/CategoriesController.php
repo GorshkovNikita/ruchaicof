@@ -19,8 +19,12 @@ class CategoriesController extends Controller
 {
     public function getIndex()
     {
-        $categories = Category::all();
+        //$categories = Category::all();
 
+        $categories = DB::table('categories')
+            ->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
+            ->select('categories.*', 'parent.name as parent_name')
+            ->get();
         return view('admin.category.categories')
             ->with('categories', $categories);
     }
@@ -79,6 +83,7 @@ class CategoriesController extends Controller
     {
         $category = session('category');
         $request->session()->flash('category', $category);
+        $request->session()->put('root_categories', Category::where('parent_id', null)->get());
         $properties = Property::all();
 
         return view('admin.category.add_columns')
@@ -168,6 +173,10 @@ class CategoriesController extends Controller
 
     public function postDelete(Request $request, $id)
     {
+        // TODO: протестировать удаление родительской категории
+        // 2 варианта:
+        // 1. Удалить ее и все подкатегории и товары
+        // 2. Запретить удаление
         $category = Category::find($id);
 
         if ($category != null) {

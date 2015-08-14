@@ -29,8 +29,10 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-    '/' => 'HomeController'
-]);
+Route::group(['middleware' => 'category'], function() {
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+        '/' => 'HomeController'
+    ]);
+});

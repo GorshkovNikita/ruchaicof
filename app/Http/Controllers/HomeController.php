@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         if ($subcategory == null) {
             $categories = Category::where('parent_id', null)->get();
-            return view('home.products')
+            return view('home.categories')
                 ->with([
                     'categories' => $categories,
                     'pageTitle' => 'Наша продукция'
@@ -35,7 +35,7 @@ class HomeController extends Controller
             $parent = Category::where('table_name', $subcategory)->first();
             if ($parent->final == 0) {
                 $categories = Category::where('parent_id', $parent->id)->get();
-                return view('home.products')
+                return view('home.categories')
                     ->with([
                         'categories' => $categories,
                         'pageTitle' => $parent->name
@@ -43,8 +43,11 @@ class HomeController extends Controller
             }
             else {
                 $products = Product::where('category_id', $parent->id)->get();
-                return view('products.tea')
-                    ->with('products', $products);
+                return view('home.products')
+                    ->with([
+                        'products' => $products,
+                        'pageTitle' => $parent->name
+                    ]);
             }
         }
     }

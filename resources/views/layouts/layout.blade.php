@@ -73,11 +73,9 @@
                         <li>
                             {!! link_to('products', 'Продукция') !!}
                             <ul class="sub-menu">
-                                <li>{!! link_to('products/tea', 'Чай') !!}</li>
-                                <li>{!! link_to('products/coffee', 'Кофе') !!}</li>
-                                <li>{!! link_to('products/china', 'Фарфор') !!}</li>
-                                <li>{!! link_to('products/crystal', 'Хрусталь') !!}</li>
-                                <li>{!! link_to('products/food', 'Продукты') !!}</li>
+                                @foreach(session('root_categories') as $category)
+                                    <li>{!! link_to('products/' . $category->table_name, $category->name) !!}</li>
+                                @endforeach
                             </ul>
                         </li>
                         <li>{!! link_to('offers', 'Предложения для клиентов', ['id' => 'high']) !!}</li>

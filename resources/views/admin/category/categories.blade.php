@@ -28,7 +28,7 @@
                     </td>
                     <td>
                         @if ($category->parent_id != null)
-                            {{ $category->parent_id }}
+                            {{ $category->parent_name }}
                         @else
                             -
                         @endif
