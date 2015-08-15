@@ -151,10 +151,11 @@ class CategoriesController extends Controller
                 ->withInput();
         }
 
+        // TODO: исправить изменение категории (ругается на существующее название)
         $category = Category::find($id);
 
         $category->name = $request->input('name');
-        $category->table_name = $request->input('table_name');
+        // $category->table_name = $request->input('table_name');
         $category->description = $request->input('description');
 
         if ($request->hasFile('image')) {
