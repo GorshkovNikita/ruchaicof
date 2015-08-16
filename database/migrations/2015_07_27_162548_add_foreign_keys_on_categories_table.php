@@ -12,7 +12,7 @@ class AddForeignKeysOnCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('Categories', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->foreign('parent_id')->references('id')->on('Categories');
         });
     }
@@ -24,7 +24,7 @@ class AddForeignKeysOnCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('Categories', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign('categories_parent_id_foreign');
         });
     }
