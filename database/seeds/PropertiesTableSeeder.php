@@ -11,7 +11,7 @@ class PropertiesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Properties')->insert([
+        DB::table('properties')->insert([
             [
                 'name' => 'Тип',
                 'real_name' => 'type',
