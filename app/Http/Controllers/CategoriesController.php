@@ -151,7 +151,6 @@ class CategoriesController extends Controller
                 ->withInput();
         }
 
-        // TODO: исправить изменение категории (ругается на существующее название)
         $category = Category::find($id);
 
         $category->name = $request->input('name');
@@ -214,7 +213,7 @@ class CategoriesController extends Controller
     protected function validatorForEdit(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:categories',
+            'name' => 'required|max:255',
             'description' => 'required'
         ]);
     }
