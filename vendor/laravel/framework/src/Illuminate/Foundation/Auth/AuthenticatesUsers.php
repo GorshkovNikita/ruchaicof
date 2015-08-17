@@ -58,11 +58,12 @@ trait AuthenticatesUsers
             $this->incrementLoginAttempts($request);
         }
 
-        return redirect($this->loginPath())
+        return redirect()->back()
             ->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
+            ->withErrors('Неверно введены данные!');
+            /*->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
-            ]);
+            ]);*/
     }
 
     /**
@@ -82,7 +83,10 @@ trait AuthenticatesUsers
             return $this->authenticated($request, Auth::user());
         }
 
-        return redirect()->intended($this->redirectPath());
+        if (Auth::user()->role == 'admin') {
+            return redirect('admin');
+        }
+        return redirect('/');
     }
 
     /**

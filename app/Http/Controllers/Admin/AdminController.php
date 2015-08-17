@@ -18,8 +18,7 @@ class AdminController extends Controller
 
     public function getIndex()
     {
-        $users = User::all();
-        return view('admin.main')->with('users', $users);
+        return view('admin.main');
     }
 
     public function getLogin()
@@ -28,7 +27,7 @@ class AdminController extends Controller
         // так как это всего одна страница, проще написать это здесь
         // Потом как-нибудь, возможно, вынесу в middleware.
         if (Auth::check() && Auth::user()->role == 'admin') {
-            return Redirect::to('admin');
+            return redirect('admin');
         }
         elseif (Auth::check()) {
             Auth::logout();

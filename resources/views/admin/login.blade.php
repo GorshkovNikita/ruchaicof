@@ -8,7 +8,7 @@
 
     <h1><i class='fa fa-lock'></i> Login</h1>
 
-    <form method="POST" action="{{ url('/auth/login') }}">
+    <form method="POST" action="{{ url('auth/login') }}">
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

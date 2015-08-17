@@ -78,7 +78,8 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li>{!! link_to('offers', 'Предложения для клиентов', ['id' => 'high']) !!}</li>
+                        <li style="width: 180px">{!! link_to('offers', 'Предложения для клиентов', ['id' => 'high']) !!}</li>
+                        <li>{!! link_to('offers', 'Рецепты') !!}</li>
                         <li>{!! link_to('contacts', 'Контакты') !!}</li>
                     </ul>
                 </nav>

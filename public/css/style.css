@@ -170,7 +170,7 @@ nav {
 .menu > li {
     display: block;
     float: left;
-    width: 200px;
+    width: 164px;
     height: inherit;
     text-align: center;
     padding: auto 0;
@@ -189,6 +189,7 @@ nav {
 }
 
 .menu > li > a#high {
+    width: 180px;
     line-height: normal;
     height: calc(44px - 4px);
     padding: 2px 0;
