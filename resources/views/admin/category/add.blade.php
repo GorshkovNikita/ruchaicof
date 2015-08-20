@@ -12,7 +12,7 @@
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <input type="hidden" name="type" value="{{ $type }}">
+        <input id="category_type" type="hidden" name="type" value="{{ $type }}">
 
         <div class='form-group'>
             <label>

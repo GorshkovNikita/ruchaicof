@@ -12,7 +12,7 @@ $(function() {
 // отображение блока в зависимости от выбранного option
 $(function() {
     $("#is_final").change(function() {
-        if ($("#is_final_true").is(":selected")) {
+        if (($("#is_final_true").is(":selected")) && ($('#category_type').val() == 0)) {
             $("#num_cols").show();
             $('#submit').val('Далее');
         } else {

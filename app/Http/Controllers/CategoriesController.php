@@ -25,11 +25,11 @@ class CategoriesController extends Controller
             $type = 0;
 
         $categories = DB::table('categories')
-            ->leftJoin('categories as parent', function ($join) use ($type) {
-                $join->on('categories.parent_id', '=', 'parent.id')
-                    ->where('categories.type', '=', $type);
+            ->leftJoin('categories as parent', function ($join) {
+                $join->on('categories.parent_id', '=', 'parent.id');
             })
             ->select('categories.*', 'parent.name as parent_name')
+            ->where('categories.type', '=', $type)
             ->get();
 
         return view('admin.category.categories')
@@ -73,6 +73,7 @@ class CategoriesController extends Controller
         $category->description = $request->input('description');
         $category->final = $request->input('final');
         $category->num_columns = $request->input('num_columns');
+        $category->type = $request->input('type');
 
         $file = $request->file('image');
         $imageExtension = $file->getClientOriginalExtension();
@@ -84,10 +85,10 @@ class CategoriesController extends Controller
 
         $category->image = $imageName;
 
-        if ($category->final == 0) {
+        if ($category->final == 0 || $category->type != 0) {
             $category->save();
             $msg = "Категория \"" . $category->name . "\" добавлена.";
-            return redirect('admin/category')
+            return redirect('admin/category?type=' . $request->input('type'))
                 ->with('msg', $msg);
         }
         else {
