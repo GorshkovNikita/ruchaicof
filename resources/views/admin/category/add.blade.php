@@ -1,10 +1,18 @@
 @extends('admin.panel')
 
 @section('admin-page-content')
-    <h2>Шаг 1. Создание категории</h2>
+    <h2>Шаг 1. Создание категории
+        @if($type == 0)
+            {{ 'продуктов' }}
+        @elseif($type == 1)
+            {{ 'рецептов' }}
+        @endif
+    </h2>
     <form method="POST" action="{{ url('/admin/category/add') }}" enctype='multipart/form-data'>
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+        <input type="hidden" name="type" value="{{ $type }}">
 
         <div class='form-group'>
             <label>
@@ -15,16 +23,6 @@
                 @endforeach
             </label>
         </div>
-
-        <!--<div class='form-group'>
-            <label>
-                Английское название:
-                <input type="text" name="table_name" id="password" value="{{ old('table_name') }}" class="form-control" autocomplete="off">
-                @foreach ($errors->get('table_name') as $error)
-                    <span class="bg-danger">{{ $error }}</span>
-                @endforeach
-            </label>
-        </div>-->
 
         <div class='form-group'>
             <label>
@@ -62,7 +60,7 @@
 
         <div class='form-group'>
             <label>
-                Эта категория будет содержать продукты?
+                Эта категория будет содержать продукты/рецепты?
                 <select id="is_final" name="final" class="form-control">
                     <option id="is_final_true" value="1" @if (old('final') == 1) {{ 'selected' }} @endif>Да</option>
                     <option id="is_final_false" value="0" @if (old('final') == 0) {{ 'selected' }} @endif>Нет</option>

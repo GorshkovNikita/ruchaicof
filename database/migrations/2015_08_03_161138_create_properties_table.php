@@ -20,6 +20,7 @@ class CreatePropertiesTable extends Migration
             // 0 - Integer
             // 1 - String
 	        // 2 - Text
+            // 3 - Date
             $table->integer('type');
             $table->timestamps();
         });

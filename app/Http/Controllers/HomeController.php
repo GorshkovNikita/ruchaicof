@@ -61,4 +61,9 @@ class HomeController extends Controller
     {
         return view('home.contacts');
     }
+
+    public function getRecipes()
+    {
+        return view('home.recipes');
+    }
 }

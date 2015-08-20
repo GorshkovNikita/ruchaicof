@@ -19,6 +19,10 @@ class CreateCategoriesTable extends Migration
             $table->string('table_name')->unique();
             $table->text('description');
             $table->string('image');
+            // Тип категории:
+            // 0 - продукт
+            // 1 - рецепт
+            $table->integer('type');
             $table->boolean('final')->default(1);
             $table->integer('num_columns')->default(0);
             $table->timestamps();

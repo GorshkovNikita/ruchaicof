@@ -17,23 +17,41 @@ use Slug;
 
 class CategoriesController extends Controller
 {
-    public function getIndex()
+    public function getIndex(Request $request)
     {
-        //$categories = Category::all();
+        if ((null != $request->input('type')) && (in_array($request->input('type'), [0,1])))
+            $type = $request->input('type');
+        else
+            $type = 0;
 
         $categories = DB::table('categories')
-            ->leftJoin('categories as parent', 'categories.parent_id', '=', 'parent.id')
+            ->leftJoin('categories as parent', function ($join) use ($type) {
+                $join->on('categories.parent_id', '=', 'parent.id')
+                    ->where('categories.type', '=', $type);
+            })
             ->select('categories.*', 'parent.name as parent_name')
             ->get();
+
         return view('admin.category.categories')
-            ->with('categories', $categories);
+            ->with([
+                'categories' => $categories,
+                'type' => $type
+            ]);
     }
 
-    public function getAdd()
+    public function getAdd(Request $request)
     {
-        $categories = Category::where('final', 0)->get();
+        if ((null != $request->input('type')) && (in_array($request->input('type'), [0,1])))
+            $type = $request->input('type');
+        else
+            $type = 0;
+
+        $categories = Category::where('final', 0)->where('type', $type)->get();
         return view('admin.category.add')
-            ->with('categories', $categories);
+            ->with([
+                'categories' => $categories,
+                'type' => $type
+            ]);
     }
 
     public function postAdd(Request $request)

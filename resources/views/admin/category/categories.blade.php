@@ -1,12 +1,18 @@
 @extends('admin.panel')
 
 @section('admin-page-content')
-    <h1>Категории</h1>
+    <h1>Категории
+        @if($type == 0)
+            {{ 'продуктов' }}
+        @elseif($type == 1)
+            {{ 'рецептов' }}
+        @endif
+    </h1>
     @if (session('msg'))
         <strong>{{ session('msg') }}</strong>
         <br>
     @endif
-    <a class="btn btn-primary" href="{{ url('admin/category/add') }}">Добавить категорию</a>
+    <a class="btn btn-primary" href="{{ url('admin/category/add?type=' . $type) }}">Добавить категорию</a>
     <table data-toggle="table" data-height="299" class="table table-hover">
         <thead>
             <tr>

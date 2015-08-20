@@ -285,7 +285,8 @@ h2.page-title {
 
 .info > div > a {
     display: block;
-    color: #d58d0e;
+    color: orange;
+    font-weight: bold;
     padding: 10px;
 }
 
@@ -454,7 +455,7 @@ h2.page-title {
 
 .register-form > label > span:nth-child(1) {
     display: inline-block;
-    width: 170px;
+    width: 180px;
 }
 
 .register-form > label > input {
