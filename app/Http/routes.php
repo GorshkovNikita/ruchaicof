@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin'], function() {
             'category' => 'CategoriesController',
             'property' => 'PropertiesController',
             'product' => 'ProductsController',
+            'recipe' => 'RecipesController',
             'user' => 'UsersController',
             '/' => 'Admin\AdminController'
         ]);
