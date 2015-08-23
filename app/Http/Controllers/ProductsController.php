@@ -38,7 +38,7 @@ class ProductsController extends Controller
 
     public function getAdd()
     {
-        $categories = Category::where('final', 1)->get();
+        $categories = Category::where('final', 1)->where('type', 0)->get();
         return view('admin.product.add')
             ->with('categories', $categories);
     }

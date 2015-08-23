@@ -48,3 +48,8 @@ textarea {
     color: #428bca;
     text-decoration: none;
 }
+
+.recipe-content ul {
+    padding-left: 15px;
+    list-style: circle inside;
+}

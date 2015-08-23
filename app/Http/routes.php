@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('product/add', 'ProductsController@getAdd');
         Route::get('product/addproperties', 'ProductsController@getAddproperties');
         Route::get('product/{id}', 'ProductsController@getIndex');
+        Route::get('recipe/add', 'RecipesController@getAdd');
+        Route::get('recipe/{id}', 'RecipesController@getIndex');
         Route::controllers([
             'category' => 'CategoriesController',
             'property' => 'PropertiesController',
