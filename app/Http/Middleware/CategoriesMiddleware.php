@@ -19,7 +19,7 @@ class CategoriesMiddleware
         $request->session()->forget('root_categories');
         $categories= $request->session()->get('root_categories');
         if (!isset($categories)) {
-            $request->session()->put('root_categories', Category::where('parent_id', null)->get());
+            $request->session()->put('root_categories', Category::where('parent_id', null)->where('type', 0)->get());
         }
         return $next($request);
     }

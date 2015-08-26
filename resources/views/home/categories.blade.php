@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Продукция
+    {{ $pageTitle }}
 @stop
 
 @section('content')
@@ -14,7 +14,11 @@
                 <p>
                     {{ $category->description }}
                 </p>
-                {!! link_to('products/' . strtolower($category->table_name), 'Узнать подробнее >>') !!}
+                @if($category->type == 0)
+                    {!! link_to('products/' . strtolower($category->table_name), 'Узнать подробнее >>') !!}
+                @elseif ($category->type == 1)
+                    {!! link_to('recipes/' . strtolower($category->table_name), 'Узнать подробнее >>') !!}
+                @endif
             </div>
         @endforeach
     </div>

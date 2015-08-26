@@ -13,11 +13,6 @@ use Slug;
 
 class RecipesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function getIndex($id = null)
     {
         if ($id == null) {
@@ -32,11 +27,6 @@ class RecipesController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function getAdd()
     {
         $categories = Category::where('final', 1)->where('type', 1)->get();
@@ -44,12 +34,6 @@ class RecipesController extends Controller
             ->with('categories', $categories);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
     public function postAdd(Request $request)
     {
         $validator = $this->validator($request->all());
@@ -81,7 +65,7 @@ class RecipesController extends Controller
         $msg = "Рецепт \"" . $recipe->name . "\" добавлен.";
 
         return redirect('admin/recipe')
-            -with('msg', $msg);
+            ->with('msg', $msg);
     }
 
     /**

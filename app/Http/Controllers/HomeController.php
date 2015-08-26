@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Recipe;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,7 +25,7 @@ class HomeController extends Controller
     public function getProducts($subcategory = null)
     {
         if ($subcategory == null) {
-            $categories = Category::where('parent_id', null)->get();
+            $categories = Category::where('parent_id', null)->where('type', 0)->get();
             return view('home.categories')
                 ->with([
                     'categories' => $categories,
@@ -62,8 +63,34 @@ class HomeController extends Controller
         return view('home.contacts');
     }
 
-    public function getRecipes()
+    public function getRecipes($subcategory = null)
     {
-        return view('home.recipes');
+        if ($subcategory == null) {
+            $categories = Category::where('parent_id', null)->where('type', 1)->get();
+            return view('home.categories')
+                ->with([
+                    'categories' => $categories,
+                    'pageTitle' => 'Рецепты'
+                ]);
+        }
+        else {
+            $parent = Category::where('table_name', $subcategory)->first();
+            if ($parent->final == 0) {
+                $categories = Category::where('parent_id', $parent->id)->get();
+                return view('home.categories')
+                    ->with([
+                        'categories' => $categories,
+                        'pageTitle' => $parent->name
+                    ]);
+            }
+            else {
+                $recipes = Recipe::where('category_id', $parent->id)->get();
+                return view('home.recipes')
+                    ->with([
+                        'recipes' => $recipes,
+                        'pageTitle' => $parent->name
+                    ]);
+            }
+        }
     }
 }
