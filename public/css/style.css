@@ -340,6 +340,8 @@ h2.page-title {
 }
 
 .products > div > img {
+    max-width: 275px;
+    max-height: 200px;
     margin-top: 10px;
 }
 
@@ -414,6 +416,60 @@ h2.page-title {
 
 .tea > div > p {
     color: #66512c;
+}
+
+/* Recipe Page */
+
+.recipe {
+    height: auto;
+    overflow: auto;
+    color: #d8be81;
+    text-align: justify;
+    padding: 15px 20px ;
+    background-color: #66512c;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+.recipe img {
+    max-height: 200px;
+    border-radius: 10px;
+    clear: both;
+}
+
+.recipe-content {
+
+}
+
+.recipe-content a {
+    color: orange;
+    font-weight: bold;
+}
+
+.recipe-content h1, .recipe-content h2, .recipe-content h3,
+.recipe-content h4, .recipe-content h5, .recipe-content h6 {
+    padding: 0;
+}
+
+.recipe-content ul {
+    width: auto;
+    overflow: hidden;
+    padding: 10px 30px;
+    list-style: disc outside;
+}
+
+.recipe-content p:nth-of-type(odd) img {
+    float: left;
+    margin: 15px 15px 15px 0;
+}
+
+.recipe-content p:nth-of-type(even) img {
+    float: right;
+    margin: 15px 0 15px 15px;
 }
 
 /* Contacts Page */

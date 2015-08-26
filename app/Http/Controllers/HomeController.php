@@ -63,9 +63,16 @@ class HomeController extends Controller
         return view('home.contacts');
     }
 
-    public function getRecipes($subcategory = null)
+    public function getRecipes(Request $request, $subcategory = null)
     {
         if ($subcategory == null) {
+
+            if (null != $request->input('id')) {
+                $recipe = Recipe::where('id', $request->input('id'))->first();
+                return view('home.recipe')
+                    ->with('recipe', $recipe);
+            }
+
             $categories = Category::where('parent_id', null)->where('type', 1)->get();
             return view('home.categories')
                 ->with([

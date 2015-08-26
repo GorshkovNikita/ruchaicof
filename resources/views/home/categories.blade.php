@@ -10,7 +10,7 @@
         @foreach($categories as $category)
             <div>
                 <h3>{{ $category->name }}</h3>
-                <img src="{{ asset('images/categories/' . $category->image) }}" alt="{{ $category->name }}" height="150px"/>
+                <img src="{{ asset('images/categories/' . $category->image) }}" alt="{{ $category->name }}"/>
                 <p>
                     {{ $category->description }}
                 </p>

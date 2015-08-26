@@ -65,6 +65,8 @@
 
     </form>
     <script>
-        $('#content').wysihtml5();
+        $('#content').wysihtml5({
+            "stylesheets": ["{{ asset('css/iframe-style.css') }}"]
+        });
     </script>
 @stop
