@@ -335,7 +335,7 @@ h2.page-title {
 }
 
 .products > div > p {
-    height: 80px;
+    height: auto;
     padding: 10px 15px;
 }
 
@@ -462,12 +462,12 @@ h2.page-title {
     list-style: disc outside;
 }
 
-.recipe-content p:nth-of-type(odd) img {
+.recipe-content *:nth-of-type(odd) img {
     float: left;
     margin: 15px 15px 15px 0;
 }
 
-.recipe-content p:nth-of-type(even) img {
+.recipe-content *:nth-of-type(even) img {
     float: right;
     margin: 15px 0 15px 15px;
 }

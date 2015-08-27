@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function() {
             'product' => 'ProductsController',
             'recipe' => 'RecipesController',
             'user' => 'UsersController',
+            'image' => 'ImagesController',
             '/' => 'Admin\AdminController'
         ]);
     });

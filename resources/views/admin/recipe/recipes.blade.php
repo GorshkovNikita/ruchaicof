@@ -9,13 +9,13 @@
     <a class="btn btn-primary" href="{{ url('admin/recipe/add') }}">Добавить рецепт</a>
     <table data-toggle="table" data-height="299" class="table table-hover">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Имя</th>
-            <th>Категория</th>
-            <th>Описание</th>
-            <th>Действие</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Категория</th>
+                <th>Описание</th>
+                <th>Действие</th>
+            </tr>
         </thead>
         <tbody>
         @foreach($recipes as $recipe)

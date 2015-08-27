@@ -39,3 +39,8 @@ $(function () {
         }
     });
 });
+
+// копирование в буфер
+function copyToClipboard(text) {
+    window.prompt("Для того, чтобы скопировать ссылку на изображение нажмите Ctrl+C и Enter", text);
+}

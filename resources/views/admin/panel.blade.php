@@ -30,6 +30,7 @@
                     <li>{!! link_to('admin/recipe', 'Рецепты') !!}</li>
                     <li>{!! link_to('admin/user', 'Пользователи') !!}</li>
                     <li>{!! link_to('admin/property', 'Характеристики') !!}</li>
+                    <li>{!! link_to('admin/image', 'Изображения') !!}</li>
                 </ul>
                 </div>
         </div>

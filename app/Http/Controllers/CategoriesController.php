@@ -14,6 +14,7 @@ use App\Product;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Slug;
+use App\Recipe;
 
 class CategoriesController extends Controller
 {
@@ -186,7 +187,7 @@ class CategoriesController extends Controller
 
         $msg = "Категория \"" . $category->name . "\" изменена.";
 
-        return redirect('admin/category')
+        return redirect('admin/category?type=' . $category->type)
             ->with('msg', $msg);
     }
 
@@ -195,22 +196,25 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         if ($category != null) {
-            if ($category->final == 1) {
+            if (($category->final == 1) && ($category->type == 0)) {
                 Schema::drop($category->table_name);
                 Product::where('category_id', $category->id)->delete();
+            }
+            elseif (($category->final == 1) && ($category->type == 1)) {
+                Recipe::where('category_id', $category->id)->delete();
             }
             else {
                 $sub_categories = Category::where('parent_id', $category->id)->get();
                 if (count($sub_categories) > 0) {
                     $msg = "Нельзя удалить категорию \"" . $category->name . "\", так как она содержит другие подкатегории.";
-                    return redirect('admin/category')
+                    return redirect('admin/category?type=' . $category->type)
                         ->with('msg', $msg);
                 }
             }
             $category->delete();
 
             $msg = "Категория \"" . $category->name . "\" удалена.";
-            return redirect('admin/category')
+            return redirect('admin/category?type=' . $category->type)
                 ->with('msg', $msg);
         }
         else {

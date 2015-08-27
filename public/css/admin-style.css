@@ -49,8 +49,12 @@ textarea {
     text-decoration: none;
 }
 
+.admin-page-content img {
+    max-height: 200px;
+    max-width: 250px;
+}
+
 .recipe-content ul {
     padding-left: 15px;
     list-style: circle inside;
 }
-
