@@ -52,24 +52,12 @@ class ImagesController extends Controller
             ->with('msg', $msg);
     }
 
-    public function show($id)
+    public function postDelete($image)
     {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        unlink('images/articles/' . $image);
+        $msg = "Изображение \"" . $image . "\" удалено.";
+        return redirect('admin/image')
+            ->with('msg', $msg);
     }
 
     public function validator(array $data)

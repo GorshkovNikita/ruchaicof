@@ -15,21 +15,20 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($images as $image)
-            <tr>
-                <td>
-                    <img src="{{ url('images/articles/'.$image) }}">
-                </td>
-                <td>
-                    <button class="btn btn-primary" style="margin-right: 20px; float: left;" onclick="copyToClipboard('{{url('images/articles/'.$image)}}')">Скопировать ссылку</button>
-                    <form method="POST" action="image/delete/">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-danger" value="Удалить">
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-
+            @foreach($images as $image)
+                <tr>
+                    <td>
+                        <img src="{{ url('images/articles/'.$image) }}">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" style="margin-right: 20px; float: left;" onclick="copyToClipboard('{{url('images/articles/'.$image)}}')">Скопировать ссылку</button>
+                        <form method="POST" action="image/delete/{{$image}}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="submit" class="btn btn-danger" value="Удалить">
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
 
     </table>
