@@ -44,7 +44,7 @@
                     </td>
                     <td>
                         <a href="{{ url('admin/category/edit/'.$category->id) }}" class="btn btn-primary" style="margin-left: 20px">Изменить</a>
-                        <form method="POST" action="category/delete/{{ $category->id }}" style="float: left">
+                        <form method="POST" action="{{ url('admin/category/delete/'. $category->id) }}" style="float: left">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-danger" value="Удалить">
                         </form>

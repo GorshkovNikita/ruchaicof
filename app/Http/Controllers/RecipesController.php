@@ -68,46 +68,62 @@ class RecipesController extends Controller
             ->with('msg', $msg);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function getEdit($id)
     {
-        //
+        $recipe = Recipe::where('id', $id)->first();
+
+        return view('admin.recipe.edit')
+            ->with('recipe', $recipe);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function postEdit(Request $request, $id)
     {
-        //
+        $validator = $this->validatorForEdit($request->all());
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $recipe = Recipe::where('id', $id)->first();
+
+        $recipe->name = $request->input('name');
+        // $category->table_name = $request->input('table_name');
+        $recipe->description = $request->input('description');
+        $recipe->content = $request->input('content');
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->move(
+                base_path() . '/public/images/recipes/' , $recipe->image
+            );
+        }
+
+        $recipe->save();
+
+        $msg = "Рецепт \"" . $recipe->name . "\" изменен.";
+
+        return redirect('admin/recipe')
+            ->with('msg', $msg);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
+    public function postDelete(Request $request, $id)
     {
-        //
+        $recipe = Recipe::where('id', $id)->first();
+
+        if ($recipe != null) {
+            $recipe->delete();
+            $msg = "Рецепт \"" . $recipe->name . "\" удален.";
+            return redirect('admin/recipe')
+                ->with('msg', $msg);
+        }
+        else {
+            $msg = "Рецепта с id = " . $id . " не существует.";
+            return redirect('admin/recipe')
+                ->with('msg', $msg);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
     {
         //
@@ -121,6 +137,15 @@ class RecipesController extends Controller
             'description' => 'required|max:255',
             'content' => 'required',
             'image' => 'required'
+        ]);
+    }
+
+    public function validatorForEdit(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'content' => 'required'
         ]);
     }
 }

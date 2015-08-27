@@ -13,7 +13,11 @@ class AddForeignKeysOnRecipesTable extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

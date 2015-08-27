@@ -13,7 +13,11 @@ class AddForeignKeysOnCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('categories');
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

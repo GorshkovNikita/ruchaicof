@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <a href="{{ url('admin/product/edit/'.$product->id) }}" class="btn btn-primary" style="margin-left: 20px">Изменить</a>
-                    <form method="POST" action="product/delete/{{ $product->id }}" style="float: left">
+                    <form method="POST" action="{{ url('admin/product/delete/'.$product->id) }}" style="float: left">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Удалить">
                     </form>

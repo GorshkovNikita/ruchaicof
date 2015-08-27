@@ -16,16 +16,6 @@
             </label>
         </div>
 
-        <!--<div class='form-group'>
-            <label>
-                Английское название:
-                <input type="text" name="table_name" id="password" value="{{ $category->table_name }}" class="form-control" autocomplete="off">
-                @foreach ($errors->get('table_name') as $error)
-                    <span class="bg-danger">{{ $error }}</span>
-                @endforeach
-            </label>
-        </div>-->
-
         <div class='form-group'>
             <label>
                 Описание:

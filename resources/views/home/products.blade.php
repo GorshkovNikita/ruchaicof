@@ -10,7 +10,7 @@
         @foreach($products as $product)
             <div>
                 <h3>{{ $product->name }}</h3>
-                <img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}" width="200px" height="150px"/>
+                <img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}"/>
                 <p>
                     {{ $product->short_description }}
                 </p>

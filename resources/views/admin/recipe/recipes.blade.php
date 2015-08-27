@@ -33,8 +33,8 @@
                     {{ $recipe->description }}
                 </td>
                 <td>
-                    <a href="{{ url('admin/product/edit/'.$recipe->id) }}" class="btn btn-primary" style="margin-left: 20px">Изменить</a>
-                    <form method="POST" action="product/delete/{{ $recipe->id }}" style="float: left">
+                    <a href="{{ url('admin/recipe/edit/'.$recipe->id) }}" class="btn btn-primary" style="margin-left: 20px">Изменить</a>
+                    <form method="POST" action="{{ url('admin/recipe/delete/' . $recipe->id) }}" style="float: left">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="submit" class="btn btn-danger" value="Удалить">
                     </form>

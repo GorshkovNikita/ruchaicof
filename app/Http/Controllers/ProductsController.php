@@ -115,7 +115,10 @@ class ProductsController extends Controller
 
     public function getEdit($id)
     {
+        $product = Product::where('id', $id)->first();
 
+        return view('admin.recipe.edit')
+            ->with('product', $product);
     }
 
     public function postEdit($id)
@@ -125,7 +128,23 @@ class ProductsController extends Controller
 
     public function postDelete(Request $request, $id)
     {
+        $product = Product::where('id', $id)->first();
+        $tableName = Category::where('id', $product->category_id)->first()->table_name;
 
+        if ($product != null) {
+            /*DB::table($tableName)
+                ->where('product_id', '=', $product->id)
+                ->delete();*/
+            $product->delete();
+            $msg = "Продукт \"" . $product->name . "\" удален.";
+            return redirect('admin/product')
+                ->with('msg', $msg);
+        }
+        else {
+            $msg = "Продукта с id = " . $id . " не существует.";
+            return redirect('admin/recipe')
+                ->with('msg', $msg);
+        }
     }
 
     protected function validator(array $data)

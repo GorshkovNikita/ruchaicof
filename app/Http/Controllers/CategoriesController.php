@@ -142,7 +142,7 @@ class CategoriesController extends Controller
         });
 
         Schema::table($category->table_name, function(Blueprint $table) {
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
 
         $msg = "Категория \"" . $category->name . "\" добавлена.";

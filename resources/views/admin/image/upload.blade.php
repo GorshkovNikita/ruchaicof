@@ -4,7 +4,7 @@
     <h1>Загрузка изображения</h1>
     <form method="POST" action="{{ url('/admin/image/upload') }}" enctype='multipart/form-data'>
 
-        <input type="hidden" name="_token" value="{{{ Auth::user()->remember_token }}}">
+        <input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 
         <div class="form-group">
             <label>Название:<br>
