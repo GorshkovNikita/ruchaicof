@@ -117,24 +117,85 @@ class ProductsController extends Controller
     {
         $product = Product::where('id', $id)->first();
 
-        return view('admin.recipe.edit')
-            ->with('product', $product);
+        if ($product == null) {
+            $msg = "Продукта с id=" . $id . " не существует.";
+            return redirect('admin/product')
+                ->with('msg', $msg);
+        }
+
+        $category = Category::where('id', $product->category_id)->first();
+        $columns = Schema::getColumnListing($category->table_name);
+        // здесь удаляются имена ненужных столбцов:
+        // id, product_id, created_at, updated_at
+        array_splice($columns, 0, 2);
+        array_splice($columns, count($columns) - 2, 2);
+
+        $rusColumns = [];
+        foreach($columns as $column) {
+            array_push($rusColumns, Property::where('real_name', $column)->first()->name);
+        }
+
+        return view('admin.product.edit')
+            ->with([
+                'product' => $product,
+                'columns' => $columns,
+                'rusColumns' => $rusColumns
+            ]);
     }
 
-    public function postEdit($id)
+    public function postEdit(Request $request, $id)
     {
+        $validator = $this->validatorForEdit($request->all());
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $product = Product::where('id', $id)->first();
+        $category = Category::where('id', $product->category_id)->first();
+        $columns = Schema::getColumnListing($category->table_name);
+        // здесь удаляются имена ненужных столбцов:
+        // id, product_id, created_at, updated_at
+        array_splice($columns, 0, 2);
+        array_splice($columns, count($columns) - 2, 2);
+
+        $rusColumns = [];
+
+        foreach($columns as $column) {
+            array_push($rusColumns, Property::where('real_name', $column)->first());
+        }
+
+        $product->name = $request->input('name');
+        $product->short_description = $request->input('short_description');
+        $product->description = $request->input('description');
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->move(
+                base_path() . '/public/images/products/' , $product->image
+            );
+        }
+
+        foreach($columns as $column) {
+            DB::table($category->table_name)
+                ->where('product_id', $product->id)
+                ->update([$column => $request->input($column)]);
+        }
+
+        $product->save();
+
+        $msg = "Продукт \"" . $product->name . "\" изменен.";
+
+        return redirect('admin/product')
+            ->with('msg', $msg);
     }
 
     public function postDelete(Request $request, $id)
     {
         $product = Product::where('id', $id)->first();
-        $tableName = Category::where('id', $product->category_id)->first()->table_name;
 
         if ($product != null) {
-            /*DB::table($tableName)
-                ->where('product_id', '=', $product->id)
-                ->delete();*/
             $product->delete();
             $msg = "Продукт \"" . $product->name . "\" удален.";
             return redirect('admin/product')
@@ -155,6 +216,15 @@ class ProductsController extends Controller
             'short_description' => 'required|max:255',
             'description' => 'required',
             'image' => 'required'
+        ]);
+    }
+
+    protected function validatorForEdit(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'short_description' => 'required|max:255',
+            'description' => 'required'
         ]);
     }
 }

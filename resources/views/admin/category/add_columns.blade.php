@@ -12,7 +12,7 @@
                     Характеристика №{{ $i+1 }}:
                     <select class="form-control" name="property{{ $i }}">
                         @foreach($properties as $property)
-                            <option value="{{ $property->id }}">{{ $property->name }}</option>
+                            <option value="{{ $property->id }}" @if($property->id == old('property' . $i)) {{ 'selected' }} @endif>{{ $property->name }}</option>
                         @endforeach
                     </select>
                     @foreach ($errors->get('property'.$i) as $error)

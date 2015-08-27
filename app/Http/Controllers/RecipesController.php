@@ -89,7 +89,6 @@ class RecipesController extends Controller
         $recipe = Recipe::where('id', $id)->first();
 
         $recipe->name = $request->input('name');
-        // $category->table_name = $request->input('table_name');
         $recipe->description = $request->input('description');
         $recipe->content = $request->input('content');
 

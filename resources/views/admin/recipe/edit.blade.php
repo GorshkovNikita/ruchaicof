@@ -37,7 +37,7 @@
 
         <div class='form-group'>
             <label>
-                Описание:
+                Содержание:
                 <textarea id="content" name="content" class="form-control" style="width: 1000px; height: 500px;">{{ $recipe->content }}</textarea>
                 @foreach ($errors->get('content') as $error)
                     <span class="bg-danger">{{ $error }}</span>

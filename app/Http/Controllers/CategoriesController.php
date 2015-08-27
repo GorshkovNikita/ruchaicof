@@ -114,9 +114,19 @@ class CategoriesController extends Controller
     public function postAddcolumns(Request $request)
     {
         $category = session('category');
-        $category->save();
 
         $propertyIDs = $request->except('_token');
+
+        $validator = $this->validatorForProperties($propertyIDs);
+
+        if ($validator->fails()) {
+            $request->session()->flash('category', $category);
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $category->save();
 
         Schema::create($category->table_name, function(Blueprint $table) use ($category, $request, $propertyIDs)
         {
@@ -241,10 +251,18 @@ class CategoriesController extends Controller
         ]);
     }
 
-    protected function validatorForAddColumns(array $data)
+    protected function validatorForProperties(array $data)
     {
-        return Validator::make($data, [
-            // TODO: написать валидатор для добавления колонок - значения должны быть различны
-        ]);
+        $rules = [];
+        foreach ($data as $key1 => $value1) {
+            $rule = 'different:';
+            foreach ($data as $key2 => $value2) {
+                if ($key1 != $key2)
+                    $rule = $rule . $key2 . ',';
+            }
+            $rules = array_merge($rules, [$key1 => $rule]);
+        }
+        return Validator::make($data, $rules);
     }
+
 }

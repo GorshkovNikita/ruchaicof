@@ -16,24 +16,14 @@
             </label>
         </div>
 
-        <!--<div class="form-group">
-            <label>
-                Английское название:
-                <input type="text" name="real_name" class="form-control" value="{{ old('real_name') }}">
-                @foreach ($errors->get('real_name') as $error)
-                    <span class="bg-danger">{{ $error }}</span>
-                @endforeach
-            </label>
-        </div>-->
-
         <div class="form-group">
             <label>
                 Тип значения:
                 <select name="type" class="form-control" >
-                    <option value="0" @if (old('type') == 0) {{ 'checked' }} @endif>Число</option>
-                    <option value="1" @if (old('type') == 1) {{ 'checked' }} @endif>Строка</option>
-                    <option value="2" @if (old('type') == 2) {{ 'checked' }} @endif>Текст</option>
-                    <option value="3" @if (old('type') == 3) {{ 'checked' }} @endif>Дата</option>
+                    <option value="0" @if (old('type') == 0) {{ 'selected' }} @endif>Число</option>
+                    <option value="1" @if (old('type') == 1) {{ 'selected' }} @endif>Строка</option>
+                    <option value="2" @if (old('type') == 2) {{ 'selected' }} @endif>Текст</option>
+                    <option value="3" @if (old('type') == 3) {{ 'selected' }} @endif>Дата</option>
                 </select>
                 @foreach ($errors->get('type') as $error)
                     <span class="bg-danger">{{ $error }}</span>
