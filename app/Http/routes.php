@@ -34,6 +34,18 @@ Route::group(['prefix' => 'admin'], function() {
 });
 
 Route::group(['middleware' => 'category'], function() {
+    Route::group(['middleware' => 'client_auth'], function() {
+        Route::group(['prefix' => 'recipes'], function() {
+            Route::get('/', 'HomeController@getRecipes');
+            Route::get('{subcategories}', 'HomeController@getRecipes');
+        });
+
+        Route::group(['prefix' => 'offers'], function() {
+            Route::get('/', 'HomeController@getOffers');
+            //Route::get('{subcategories}', 'HomeController@getOffers');
+        });
+    });
+
     Route::controllers([
         'auth' => 'Auth\AuthController',
         'password' => 'Auth\PasswordController',

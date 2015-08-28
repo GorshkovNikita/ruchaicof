@@ -39,7 +39,7 @@ class RecipesController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-            return Redirect::back()
+            return redirect()->back()
                 ->withErrors($validator->messages())
                 ->withInput();
         }

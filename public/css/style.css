@@ -441,6 +441,16 @@ h2.page-title {
     clear: both;
 }
 
+.recipe a {
+    color: orange;
+    font-weight: bold;
+}
+
+.recipe ul {
+    list-style-position: inside;
+    padding: 5px 0 0 15px;
+}
+
 .recipe-content {
 
 }
@@ -480,16 +490,6 @@ h2.page-title {
 
 
 /* Register Page */
-
-.register-paragraph ul {
-    list-style-position: inside;
-    padding: 5px 0 0 15px;
-}
-
-.register-paragraph a {
-    color: orange;
-    font-weight: bold;
-}
 
 .register-form {
     height: auto;
