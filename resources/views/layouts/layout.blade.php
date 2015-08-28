@@ -56,12 +56,15 @@
                                     </label>
                                 @endif
                                 <label>
-                                    <input type="checkbox" name="remember"><span>&nbsp; Запомнить пароль</span>
+                                    <span>
+                                        <input type="checkbox" name="remember"> Запомнить.
+                                        <a href="{{ url('password/email') }}" style="display: inline; text-decoration: underline">Забыли пароль?</a>
+                                    </span>
                                 </label>
                                 <label>
                                     <input type="submit" value="Войти">
                                 </label>
-                                <a href="{{ url('auth/register') }}">Зарегистрироваться</a>
+                                <a href="{{ url('auth/register') }}" style="text-decoration: underline">Зарегистрироваться</a>
                             </form>
                         @endif
                     </div>

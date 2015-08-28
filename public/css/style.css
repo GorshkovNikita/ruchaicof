@@ -141,7 +141,7 @@ header {
 
 .login-form > label > span {
     display: inline-block;
-    width: 170px;
+    width: 227px;
 }
 
 .login-form > label > input {
@@ -481,18 +481,20 @@ h2.page-title {
 
 /* Register Page */
 
+.register-paragraph ul {
+    list-style-position: inside;
+    padding: 5px 0 0 15px;
+}
+
+.register-paragraph a {
+    color: orange;
+    font-weight: bold;
+}
+
 .register-form {
     height: auto;
     overflow: auto;
     color: #d8be81;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #66512c;
-    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
-    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
-    -ms-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
-    -o-box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .4);
 }
 
 .register-form > label {
@@ -523,6 +525,45 @@ h2.page-title {
 }
 
 .register-form > label > span.error-text {
+    display: inline;
+    color: red;
+}
+
+/* Reset Password */
+
+.email-reset {
+    height: auto;
+    overflow: auto;
+    color: #d8be81;
+}
+
+.email-reset > label {
+    display: block;
+    height: 25px;
+    padding: 5px;
+}
+
+.email-reset > label:last-child {
+    height: 30px;
+}
+
+.email-reset > label:last-child > input {
+    border-radius: 0;
+}
+
+.email-reset > label > span:nth-child(1) {
+    display: inline-block;
+    width: 180px;
+}
+
+.email-reset > label > input {
+    font: inherit;
+    height: 25px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.email-reset > label > span.error-text {
     display: inline;
     color: red;
 }

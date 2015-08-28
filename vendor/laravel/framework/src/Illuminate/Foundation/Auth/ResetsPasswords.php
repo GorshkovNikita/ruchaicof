@@ -36,10 +36,10 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return redirect()->back()->with('status', trans($response));
+                return redirect()->back()->with('status', 'Вам было отправлено письмо с ссылкой на восстановление пароля!');
 
             case Password::INVALID_USER:
-                return redirect()->back()->withErrors(['email' => trans($response)]);
+                return redirect()->back()->withErrors(['email' => 'Пользователь с таким e-mail не найден!']);
         }
     }
 
@@ -50,7 +50,7 @@ trait ResetsPasswords
      */
     protected function getEmailSubject()
     {
-        return isset($this->subject) ? $this->subject : 'Your Password Reset Link';
+        return isset($this->subject) ? $this->subject : 'Восстановление пароля от аккаунта ruchaicof';
     }
 
     /**
@@ -128,6 +128,6 @@ trait ResetsPasswords
             return $this->redirectPath;
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
     }
 }
