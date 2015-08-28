@@ -97,6 +97,9 @@
 
         <footer>
             <div class="container">
+                <div>
+                    <img src="{{ url('images/logo.png') }}">
+                </div>
                 <ul>
                     <li>
                         8 (495) 777-77-90
@@ -118,10 +121,13 @@
                 </ul>
                 <ul>
                     <li>
-                        РуЧайКоф 2015
+                        РуЧайКоф © 2015
                     </li>
                     <li>
                         Разрабатывается ГенРек
+                    </li>
+                    <li>
+                        Продвигается ГенРек
                     </li>
                 </ul>
             </div>

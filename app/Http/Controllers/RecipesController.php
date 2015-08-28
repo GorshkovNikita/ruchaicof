@@ -10,13 +10,18 @@ use Validator;
 use Redirect;
 use App\Recipe;
 use Slug;
+use DB;
 
 class RecipesController extends Controller
 {
     public function getIndex($id = null)
     {
         if ($id == null) {
-            $recipes = Recipe::all();
+            $recipes = DB::table('recipes')
+                ->join('categories', 'categories.id', '=', 'recipes.category_id')
+                ->select('recipes.*', 'categories.name as category_name')
+                ->get();
+
             return view('admin.recipe.recipes')
                 ->with('recipes', $recipes);
         }
@@ -121,11 +126,6 @@ class RecipesController extends Controller
             return redirect('admin/recipe')
                 ->with('msg', $msg);
         }
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 
     public function validator(array $data)
