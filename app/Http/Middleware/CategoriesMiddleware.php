@@ -21,6 +21,13 @@ class CategoriesMiddleware
         if (!isset($categories)) {
             $request->session()->put('root_categories', Category::where('parent_id', null)->where('type', 0)->get());
         }
+
+        $request->session()->forget('root_recipe_categories');
+        $recipe_categories = $request->session()->get('root_recipe_categories');
+        if (!isset($recipe_categories)) {
+            $request->session()->put('root_recipe_categories', Category::where('parent_id', null)->where('type', 1)->get());
+        }
+
         return $next($request);
     }
 }

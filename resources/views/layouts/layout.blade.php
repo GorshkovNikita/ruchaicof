@@ -82,7 +82,15 @@
                             </ul>
                         </li>
                         <li style="width: 180px">{!! link_to('offers', 'Предложения для клиентов', ['id' => 'high']) !!}</li>
-                        <li>{!! link_to('recipes', 'Рецепты') !!}</li>
+                        <li>{!! link_to('recipes', 'Рецепты') !!}
+                            @if (Auth::check())
+                                <ul class="sub-menu">
+                                    @foreach(session('root_recipe_categories') as $category)
+                                        <li>{!! link_to('recipes/' . $category->table_name, $category->name) !!}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
                         <li>{!! link_to('contacts', 'Контакты') !!}</li>
                     </ul>
                 </nav>
