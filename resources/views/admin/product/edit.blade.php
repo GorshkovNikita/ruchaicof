@@ -45,11 +45,20 @@
             </label>
         </div>
 
-        @foreach (array_combine($columns, $rusColumns) as $column => $rusColumn)
+        @foreach ($properties as $property)
             <div class='form-group'>
-                <label>{{ $rusColumn }}<br>
-                    <input name="{{ $column }}" type="text" class="form-control">
-                    @foreach ($errors->get('{{ $column }}') as $error)
+                <?php $name = $property->real_name ?>
+                <label>{{ $property->name }}<br>
+                    @if($property->type == 0 || $property->type == 1)
+                        <input type="text" name="{{ $property->real_name }}" value="{{ $product->$name }}" class="form-control" autocomplete="off">
+                    @elseif($property->type == 2)
+                        <textarea name="{{ $property->real_name }}" class="form-control" autocomplete="off">
+                            {{ $product->$name }}
+                        </textarea>
+                    @elseif($property->type == 3)
+                        <input type="date" name="{{ $property->real_name }}" class="form-control" autocomplete="off" value="{{ $product->$name }}">
+                    @endif
+                    @foreach ($errors->get($property->real_name) as $error)
                         <span class="bg-danger">{{ $error }}</span>
                     @endforeach
                 </label>

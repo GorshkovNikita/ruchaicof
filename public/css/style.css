@@ -359,6 +359,24 @@ h2.page-title {
 
 /* Products Page */
 
+.product-top > div {
+    width: 50%;
+    text-align: center;
+    float: left;
+}
+
+.product-top > div:nth-child(2) {
+    text-align: left;
+}
+
+.product-properties {
+
+}
+
+.product-description p {
+    text-align: justify;
+}
+
 /* Tea Page */
 
 .tea {

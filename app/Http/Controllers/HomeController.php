@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
+use DB;
+use Slug;
+use Schema;
+use App\Property;
 
 class HomeController extends Controller
 {
@@ -22,9 +25,37 @@ class HomeController extends Controller
         return view('home.about');
     }
 
-    public function getProducts($subcategory = null)
+    public function getProducts(Request $request, $subcategory = null)
     {
         if ($subcategory == null) {
+
+            if (null != $request->input('id')) {
+                $product = Product::where('id', $request->input('id'))->first();
+                $category = Category::where('id', $product->category_id)->first();
+                $productWIthProperties = DB::table('products')
+                    ->join($category->table_name, 'products.id', '=', $category->table_name . '.product_id')
+                    ->select('products.*', $category->table_name . '.*')
+                    ->first();
+
+                $columns = Schema::getColumnListing($category->table_name);
+                // здесь удаляются имена ненужных столбцов:
+                // id, product_id, created_at, updated_at
+                array_splice($columns, 0, 2);
+                array_splice($columns, count($columns) - 2, 2);
+
+                $properties = [];
+                foreach($columns as $column) {
+                    $property = Property::where('real_name', $column)->first();
+                    array_push($properties, $property);
+                }
+
+                return view('home.product')
+                    ->with([
+                        'product' => $productWIthProperties,
+                        'properties' => $properties
+                    ]);
+            }
+
             $categories = Category::where('parent_id', null)->where('type', 0)->get();
             return view('home.categories')
                 ->with([

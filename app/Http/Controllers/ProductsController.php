@@ -122,22 +122,27 @@ class ProductsController extends Controller
         }
 
         $category = Category::where('id', $product->category_id)->first();
+        $productWIthProperties = DB::table('products')
+            ->join($category->table_name, 'products.id', '=', $category->table_name . '.product_id')
+            ->select('products.*', $category->table_name . '.*')
+            ->first();
+
         $columns = Schema::getColumnListing($category->table_name);
         // здесь удаляются имена ненужных столбцов:
         // id, product_id, created_at, updated_at
         array_splice($columns, 0, 2);
         array_splice($columns, count($columns) - 2, 2);
 
-        $rusColumns = [];
+        $properties = [];
         foreach($columns as $column) {
-            array_push($rusColumns, Property::where('real_name', $column)->first()->name);
+            $property = Property::where('real_name', $column)->first();
+            array_push($properties, $property);
         }
 
         return view('admin.product.edit')
             ->with([
-                'product' => $product,
-                'columns' => $columns,
-                'rusColumns' => $rusColumns
+                'product' => $productWIthProperties,
+                'properties' => $properties
             ]);
     }
 

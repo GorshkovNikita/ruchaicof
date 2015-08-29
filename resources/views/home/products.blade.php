@@ -14,7 +14,7 @@
                 <p>
                     {{ $product->short_description }}
                 </p>
-                {!! link_to('about', 'Узнать подробнее >>') !!}
+                {!! link_to('products?id=' . $product->id, 'Узнать подробнее >>') !!}
             </div>
         @endforeach
     </div>
