@@ -14,6 +14,7 @@ use Schema;
 use App\Property;
 use App\News;
 use App\Offer;
+use App\About;
 
 class HomeController extends Controller
 {
@@ -90,8 +91,12 @@ class HomeController extends Controller
     {
         if ($request->input('id') == null) {
             $news = News::all();
+            $about = About::first();
             return view('home.about')
-                ->with('news', $news);
+                ->with([
+                    'news' => $news,
+                    'about' => $about
+                ]);
         }
         else {
             $item = News::where('id', $request->input('id'))->first();

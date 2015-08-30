@@ -489,6 +489,10 @@ h2.page-title {
     padding: 0;
 }
 
+.recipe-content p {
+    text-indent: 30px;
+}
+
 .recipe-content ul {
     width: auto;
     overflow: hidden;
@@ -598,6 +602,41 @@ h2.page-title {
     text-align: justify;
 }
 
+.news-top p {
+    text-indent: 30px;
+}
+
+.about-content a {
+    color: orange;
+    font-weight: bold;
+}
+
+.about-content h1, .about-content h2, .about-content h3,
+.about-content h4, .about-content h5, .about-content h6 {
+    padding: 0;
+}
+
+.about-content p {
+    text-indent: 30px;
+}
+
+.about-content ul {
+    width: auto;
+    overflow: hidden;
+    padding: 10px 50px;
+    list-style: disc outside;
+}
+
+.about-content *:nth-of-type(odd) img {
+    float: left;
+    margin: 15px 15px 15px 0;
+}
+
+.about-content *:nth-of-type(even) img {
+    float: right;
+    margin: 20px 0 15px 20px;
+}
+
 /* Offer Page */
 
 .offer-content a {
@@ -608,6 +647,10 @@ h2.page-title {
 .offer-content h1, .offer-content h2, .offer-content h3,
 .offer-content h4, .offer-content h5, .offer-content h6 {
     padding: 0;
+}
+
+.offer-content p {
+    text-indent: 30px;
 }
 
 .offer-content ul {

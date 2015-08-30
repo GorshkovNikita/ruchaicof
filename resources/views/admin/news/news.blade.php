@@ -7,6 +7,7 @@
         <br>
     @endif
     <a class="btn btn-primary" href="{{ url('admin/news/add') }}">Добавить новость</a>
+    <a class="btn btn-primary" href="{{ url('admin/news/edit-about') }}">Изменить информацию о компании</a>
     <table data-toggle="table" data-height="299" class="table table-hover">
         <thead>
             <tr>

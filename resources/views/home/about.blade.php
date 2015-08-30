@@ -7,8 +7,8 @@
 @section('content')
     <h2 class="page-title">О нас</h2>
     <div class="page-wrapper">
-        <div class="recipe">
-            Бла-бла.
+        <div class="recipe about-content">
+            {!! $about->content !!}
         </div>
     </div>
     <h2 class="page-title">Новости</h2>

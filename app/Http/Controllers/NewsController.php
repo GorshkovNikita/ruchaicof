@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App\News;
 use Slug;
+use App\About;
 
 class NewsController extends Controller
 {
@@ -66,6 +67,35 @@ class NewsController extends Controller
 
     }
 
+    public function getEditAbout()
+    {
+        $about = About::first();
+        return view('admin.news.edit_about')
+            ->with('about', $about);
+    }
+
+    public function postEditAbout(Request $request)
+    {
+        $validator = $this->validatorForAbout($request->all());
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $about = About::first();
+
+        $about->content = $request->input('content');
+
+        $about->save();
+
+        $msg = "Информация о компании изменена";
+
+        return redirect('admin/news')
+            ->with('msg', $msg);
+    }
+
     public function postDelete(Request $request, $id)
     {
 
@@ -86,6 +116,13 @@ class NewsController extends Controller
         return Validator::make($data, [
             'title' => 'required|max:255|unique:news,title,'.$id,
             'description' => 'required|max:255',
+            'content' => 'required'
+        ]);
+    }
+
+    public function validatorForAbout(array $data)
+    {
+        return Validator::make($data, [
             'content' => 'required'
         ]);
     }
