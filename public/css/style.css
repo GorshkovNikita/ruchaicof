@@ -155,6 +155,19 @@ textarea:focus, input:focus, select:focus {
     outline: none;
 }
 
+.logout-form {
+    height: 120px;
+    text-align: center;
+}
+
+.logout-form input {
+    border-radius: 0!important;
+}
+
+.login-form > label:nth-child(4n) > input {
+    height: auto!important;
+}
+
 /* Navigation */
 
 nav {

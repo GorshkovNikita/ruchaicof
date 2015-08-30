@@ -29,8 +29,18 @@
                     {!! link_to('/', '') !!}
                     <div class="top-login">
                         @if (Auth::check())
-                            Привет, {!! Auth::user()->name !!}
-                            <form method="GET" action="{{ url('/auth/logout') }}">
+                            <form method="GET" action="{{ url('/auth/logout') }}" class="login-form logout-form">
+                                <a href="{{ url('offers') }}" style="margin-right: 10px;">
+                                    <img src="{{ url('images/procent-badge-48.png') }}">
+                                </a>
+                                <a href="{{ url('products') }}" style="margin-right: 10px;">
+                                    <img src="{{ url('images/cart-59-48.png') }}">
+                                </a>
+                                <a href="{{ url('recipes') }}">
+                                    <img src="{{ url('images/restaurant-3-48 (1).png') }}">
+                                </a>
+                                <br><br>
+                                Здравствуйте, <strong>{!! Auth::user()->name !!}!</strong>
                                 <input type="hidden" name="_token" value="{{ Auth::user()->getRememberToken() }}">
                                 <label>
                                     <input type="submit" value="Выйти">
