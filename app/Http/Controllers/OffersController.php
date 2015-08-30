@@ -43,7 +43,7 @@ class OffersController extends Controller
         $imageExtension = $file->getClientOriginalExtension();
         $imageName = Slug::make($offer->title) . '.' . $imageExtension;
         $request->file('image')->move(
-            base_path() . '/public/images/news/', $imageName
+            base_path() . '/public/images/offers/', $imageName
         );
 
         $offer->image = $imageName;

@@ -12,17 +12,14 @@ use DB;
 use Slug;
 use Schema;
 use App\Property;
+use App\News;
+use App\Offer;
 
 class HomeController extends Controller
 {
     public function getIndex()
     {
         return view('home.main');
-    }
-
-    public function getAbout($type = null)
-    {
-        return view('home.about');
     }
 
     public function getProducts(Request $request, $subcategory = null)
@@ -89,9 +86,36 @@ class HomeController extends Controller
         }
     }
 
-    public function getOffers()
+    public function getAbout(Request $request)
     {
-        return view('home.offers');
+        if ($request->input('id') == null) {
+            $news = News::all();
+            return view('home.about')
+                ->with('news', $news);
+        }
+        else {
+            $item = News::where('id', $request->input('id'))->first();
+            if ($item == null)
+               return redirect('about');
+            return view('home.news')
+                ->with('item', $item);
+        }
+    }
+
+    public function getOffers(Request $request)
+    {
+        if ($request->input('id') == null) {
+            $offers = Offer::all();
+            return view('home.offers')
+                ->with('offers', $offers);
+        }
+        else {
+            $offer = Offer::where('id', $request->input('id'))->first();
+            if ($offer == null)
+                return redirect('offers');
+            return view('home.offer')
+                ->with('offer', $offer);
+        }
     }
 
     public function getContacts()

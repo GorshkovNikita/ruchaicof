@@ -537,6 +537,95 @@ h2.page-title {
 
 /* About Page */
 
+.news-item {
+    height: 150px;
+    background-color: #66512c;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    clear: both;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
+.news-item > div {
+    height: 150px;
+    float: left;
+}
+
+.news-item > div:first-child {
+    width: 250px;
+}
+
+.news-item > div:last-child {
+    width: 680px;
+    margin-left: 15px;
+}
+
+.news-item > div > h3 {
+    padding: 5px 0;
+}
+
+.news-item > div > p {
+    width: inherit;
+    padding: 5px 0;
+}
+
+.news-item > div > a {
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+}
+
+.news-item > div > img {
+    max-height: 150px;
+    max-width: 250px;
+}
+
+.news-top > div {
+    width: 100%;
+    text-align: justify;
+}
+
+.news-top > img {
+    max-width: 250px;
+    max-height: 200px;
+    float: left;
+    margin: 20px;
+    text-align: justify;
+}
+
+/* Offer Page */
+
+.offer-content a {
+    color: orange;
+    font-weight: bold;
+}
+
+.offer-content h1, .offer-content h2, .offer-content h3,
+.offer-content h4, .offer-content h5, .offer-content h6 {
+    padding: 0;
+}
+
+.offer-content ul {
+    width: auto;
+    overflow: hidden;
+    padding: 10px 30px;
+    list-style: disc outside;
+}
+
+.offer-content *:nth-of-type(odd) img {
+    float: left;
+    margin: 15px 15px 15px 0;
+}
+
+.offer-content *:nth-of-type(even) img {
+    float: right;
+    margin: 20px 0 15px 20px;
+}
 
 /* Register Page */
 

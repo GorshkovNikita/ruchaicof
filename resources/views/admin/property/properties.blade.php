@@ -12,9 +12,7 @@
             <tr>
                 <th>ID</th>
                 <th>Название</th>
-                <th>Название для таблицы</th>
                 <th>Тип</th>
-                <!--<th>Действие</th>-->
             </tr>
         </thead>
         <tbody>
@@ -25,9 +23,6 @@
                     </td>
                     <td>
                         {{ $property->name }}
-                    </td>
-                    <td>
-                        {{ $property->real_name }}
                     </td>
                     <td>
                         @if ($property->type == 0)
