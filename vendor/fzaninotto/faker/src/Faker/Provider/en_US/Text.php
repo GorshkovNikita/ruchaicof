@@ -3684,7 +3684,7 @@ EOT;
     While we cannot and do not solicit contributions from states where we
     have not met the solicitation requirements, we know of no prohibition
     against accepting unsolicited donations from donors in such states who
-    approach us with offers to donate.
+    approach us with offer to donate.
 
     International donations are gratefully accepted, but we cannot make
     any statements concerning tax treatment of donations received from

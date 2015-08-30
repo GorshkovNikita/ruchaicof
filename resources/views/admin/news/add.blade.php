@@ -1,32 +1,18 @@
 @extends('admin.panel')
 
 @section('admin-page-content')
-    <h1>Добавление рецепта</h1>
-    <form method="POST" action="{{ url('/admin/recipe/add') }}" enctype='multipart/form-data'>
+    <h1>Добавление новости</h1>
+    <form method="POST" action="{{ url('/admin/news/add') }}" enctype='multipart/form-data'>
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class='form-group'>
             <label>
-                Название:
-                <input type="text" name="name" value="{{ old('name') }}" class="form-control" autocomplete="off">
-                @foreach ($errors->get('name') as $error)
+                Заголовок:
+                <input type="text" name="title" value="{{ old('title') }}" class="form-control" autocomplete="off">
+                @foreach ($errors->get('title') as $error)
                     <span class="bg-danger">{{ $error }}</span>
                 @endforeach
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label>
-                Категория:
-                <select name="category_id" class="form-control">
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}"
-                        @if (old('category_id') == $category->id) {{ 'selected' }} @endif>
-                            {{ $category->name }}
-                        </option>
-                    @endforeach
-                </select>
             </label>
         </div>
 

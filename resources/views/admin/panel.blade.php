@@ -28,7 +28,9 @@
                     </li>
                     <li>{!! link_to('admin/product', 'Продукты') !!}</li>
                     <li>{!! link_to('admin/recipe', 'Рецепты') !!}</li>
-                    <li>{!! link_to('admin/user', 'Пользователи') !!}</li>
+                    <li>{!! link_to('admin/news', 'Новости') !!}</li>
+                    <li>{!! link_to('admin/offer', 'Предложения') !!}</li>
+                    <li>{!! link_to('admin/user', 'Клиенты') !!}</li>
                     <li>{!! link_to('admin/property', 'Характеристики') !!}</li>
                     <li>{!! link_to('admin/image', 'Изображения') !!}</li>
                 </ul>

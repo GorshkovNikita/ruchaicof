@@ -430,10 +430,10 @@ EOT;
     Miscellaneous
 
     Each time You Distribute or Publicly Perform the Work or a Collection,
-    the Licensor offers to the recipient a license to the Work on the same
+    the Licensor offer to the recipient a license to the Work on the same
     terms and conditions as the license granted to You under this License.
     Each time You Distribute or Publicly Perform an Adaptation, Licensor
-    offers to the recipient a license to the original Work on the same
+    offer to the recipient a license to the original Work on the same
     terms and conditions as the license granted to You under this License.
     If any provision of this License is invalid or unenforceable under
     applicable law, it shall not affect the validity or enforceability of

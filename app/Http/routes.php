@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin'], function() {
             'recipe' => 'RecipesController',
             'user' => 'UsersController',
             'image' => 'ImagesController',
+            'news' => 'NewsController',
+            'offer' => 'OffersController',
             '/' => 'Admin\AdminController'
         ]);
     });
