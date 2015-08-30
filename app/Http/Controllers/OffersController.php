@@ -58,17 +58,57 @@ class OffersController extends Controller
 
     public function getEdit($id)
     {
+        $offer = Offer::where('id', $id)->first();
 
+        return view('admin.offer.edit')
+            ->with('offer', $offer);
     }
 
     public function postEdit(Request $request, $id)
     {
+        $validator = $this->validatorForEdit($request->all(), $id);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $offer = Offer::where('id', $id)->first();
+
+        $offer->title = $request->input('title');
+        $offer->description = $request->input('description');
+        $offer->content = $request->input('content');
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->move(
+                base_path() . '/public/images/offers/' , $offer->image
+            );
+        }
+
+        $offer->save();
+
+        $msg = "Предложение \"" . $offer->title . "\" изменено.";
+
+        return redirect('admin/offer')
+            ->with('msg', $msg);
     }
 
     public function postDelete(Request $request, $id)
     {
+        $offer = Offer::where('id', $id)->first();
 
+        if ($offer != null) {
+            $offer->delete();
+            $msg = "Предложение \"" . $offer->title . "\" удалено.";
+            return redirect('admin/offer')
+                ->with('msg', $msg);
+        }
+        else {
+            $msg = "Предложения с id = " . $id . " не существует.";
+            return redirect('admin/offer')
+                ->with('msg', $msg);
+        }
     }
 
     protected function validator(array $data)

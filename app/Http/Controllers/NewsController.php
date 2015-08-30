@@ -59,12 +59,57 @@ class NewsController extends Controller
 
     public function getEdit($id)
     {
+        $item = News::where('id', $id)->first();
 
+        return view('admin.news.edit')
+            ->with('item', $item);
     }
 
     public function postEdit(Request $request, $id)
     {
+        $validator = $this->validatorForEdit($request->all(), $id);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator->messages())
+                ->withInput();
+        }
+
+        $item = News::where('id', $id)->first();
+
+        $item->title = $request->input('title');
+        $item->description = $request->input('description');
+        $item->content = $request->input('content');
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->move(
+                base_path() . '/public/images/news/' , $item->image
+            );
+        }
+
+        $item->save();
+
+        $msg = "Новость \"" . $item->title . "\" изменена.";
+
+        return redirect('admin/news')
+            ->with('msg', $msg);
+    }
+
+    public function postDelete(Request $request, $id)
+    {
+        $item = News::where('id', $id)->first();
+
+        if ($item != null) {
+            $item->delete();
+            $msg = "Новость \"" . $item->title . "\" удалена.";
+            return redirect('admin/news')
+                ->with('msg', $msg);
+        }
+        else {
+            $msg = "Новости с id = " . $id . " не существует.";
+            return redirect('admin/news')
+                ->with('msg', $msg);
+        }
     }
 
     public function getEditAbout()
@@ -94,11 +139,6 @@ class NewsController extends Controller
 
         return redirect('admin/news')
             ->with('msg', $msg);
-    }
-
-    public function postDelete(Request $request, $id)
-    {
-
     }
 
     protected function validator(array $data)
