@@ -83,7 +83,7 @@ class RecipesController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $validator = $this->validatorForEdit($request->all());
+        $validator = $this->validatorForEdit($request->all(), $id);
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -131,7 +131,7 @@ class RecipesController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:recipes',
             'category_id' => 'required',
             'description' => 'required|max:255',
             'content' => 'required',
@@ -139,10 +139,10 @@ class RecipesController extends Controller
         ]);
     }
 
-    public function validatorForEdit(array $data)
+    public function validatorForEdit(array $data, $id)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:recipes,name,'.$id,
             'description' => 'required|max:255',
             'content' => 'required'
         ]);

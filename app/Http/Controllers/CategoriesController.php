@@ -102,6 +102,10 @@ class CategoriesController extends Controller
     public function getAddcolumns(Request $request)
     {
         $category = session('category');
+
+        if ($category == null)
+            return redirect('admin/category/add');
+
         $request->session()->flash('category', $category);
         $request->session()->put('root_categories', Category::where('parent_id', null)->get());
         $properties = Property::all();
@@ -173,7 +177,7 @@ class CategoriesController extends Controller
     }
 
     public function postEdit(Request $request, $id) {
-        $validator = $this->validatorForEdit($request->all());
+        $validator = $this->validatorForEdit($request->all(), $id);
 
         if ($validator->fails()) {
             return Redirect::back()
@@ -184,7 +188,6 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         $category->name = $request->input('name');
-        // $category->table_name = $request->input('table_name');
         $category->description = $request->input('description');
 
         if ($request->hasFile('image')) {
@@ -243,10 +246,10 @@ class CategoriesController extends Controller
         ]);
     }
 
-    protected function validatorForEdit(array $data)
+    protected function validatorForEdit(array $data, $id)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:categories,name,'.$id,
             'description' => 'required'
         ]);
     }

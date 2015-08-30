@@ -21,6 +21,11 @@ class PropertiesTableSeeder extends Seeder
                 'name' => 'Страна',
                 'real_name' => 'country',
                 'type' => 1
+            ],
+            [
+                'name' => 'Состав продукта',
+                'real_name' => 'sostav-produkta',
+                'type' => 2
             ]
         ]);
     }

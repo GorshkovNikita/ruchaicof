@@ -9,7 +9,11 @@
         <div class='form-group'>
             <label>
                 Название:
-                <input type="text" name="name" value="{{ $product->name }}" class="form-control" autocomplete="off">
+                <input type="text"
+                       name="name"
+                       value="@if(old('name') == null){{ $product->name }}@else{{ old('name') }}@endif"
+                       class="form-control"
+                       autocomplete="off">
                 @foreach ($errors->get('name') as $error)
                     <span class="bg-danger">{{ $error }}</span>
                 @endforeach
@@ -19,7 +23,15 @@
         <div class='form-group'>
             <label>
                 Короткое описание:
-                <textarea id="description" name="short_description" class="form-control">{{ $product->short_description }}</textarea>
+                <textarea id="description"
+                          name="short_description"
+                          class="form-control">
+                    @if(old('short_description') == null)
+                        {{ $product->short_description }}
+                    @else
+                        {{ old('short_description') }}
+                    @endif
+                </textarea>
                 @foreach ($errors->get('short_description') as $error)
                     <span class="bg-danger">{{ $error }}</span>
                 @endforeach

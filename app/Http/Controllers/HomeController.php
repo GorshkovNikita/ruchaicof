@@ -31,10 +31,15 @@ class HomeController extends Controller
 
             if (null != $request->input('id')) {
                 $product = Product::where('id', $request->input('id'))->first();
+
+                if ($product == null)
+                    return redirect('products');
+
                 $category = Category::where('id', $product->category_id)->first();
                 $productWIthProperties = DB::table('products')
                     ->join($category->table_name, 'products.id', '=', $category->table_name . '.product_id')
                     ->select('products.*', $category->table_name . '.*')
+                    ->where('products.id', '=', $request->input('id'))
                     ->first();
 
                 $columns = Schema::getColumnListing($category->table_name);
@@ -100,6 +105,10 @@ class HomeController extends Controller
 
             if (null != $request->input('id')) {
                 $recipe = Recipe::where('id', $request->input('id'))->first();
+
+                if ($recipe == null)
+                    return redirect('recipes');
+
                 return view('home.recipe')
                     ->with('recipe', $recipe);
             }
@@ -113,6 +122,10 @@ class HomeController extends Controller
         }
         else {
             $parent = Category::where('table_name', $subcategory)->first();
+
+            if ($parent == null)
+                return redirect('recipes');
+
             if ($parent->final == 0) {
                 $categories = Category::where('parent_id', $parent->id)->get();
                 return view('home.categories')

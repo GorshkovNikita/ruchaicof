@@ -77,9 +77,8 @@ class ProductsController extends Controller
     {
         $product = session('product');
 
-        if (!isset($product)) {
+        if (!isset($product))
             return redirect('admin/product/add');
-        }
 
         $request->session()->flash('product', $product);
         $category = Category::where('id', $product->category_id)->first();
@@ -100,8 +99,10 @@ class ProductsController extends Controller
     public function postAddproperties(Request $request)
     {
         $product = session('product');
+        if ($product == null)
+            return redirect('admin/product/add');
         $product->save();
-        $properties = session('properties');
+        //$properties = session('properties');
         $category = Category::where('id', $product->category_id)->first();
         $data = $request->except('_token');
         $data = array_merge(['id' => 0, 'product_id' => $product->id], $data);
@@ -122,10 +123,9 @@ class ProductsController extends Controller
         }
 
         $category = Category::where('id', $product->category_id)->first();
-        $productWIthProperties = DB::table('products')
+        $query = DB::table('products')
             ->join($category->table_name, 'products.id', '=', $category->table_name . '.product_id')
-            ->select('products.*', $category->table_name . '.*')
-            ->first();
+            ->select('products.*');
 
         $columns = Schema::getColumnListing($category->table_name);
         // здесь удаляются имена ненужных столбцов:
@@ -139,6 +139,12 @@ class ProductsController extends Controller
             array_push($properties, $property);
         }
 
+        foreach($columns as $column) {
+            $query->addSelect($category->table_name . '.' . $column);
+        }
+
+        $productWIthProperties = $query->where('products.id', '=', $id)->first();
+
         return view('admin.product.edit')
             ->with([
                 'product' => $productWIthProperties,
@@ -148,7 +154,7 @@ class ProductsController extends Controller
 
     public function postEdit(Request $request, $id)
     {
-        $validator = $this->validatorForEdit($request->all());
+        $validator = $this->validatorForEdit($request->all(), $id);
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -156,7 +162,7 @@ class ProductsController extends Controller
                 ->withInput();
         }
 
-        $product = Product::where('id', $id)->first();
+        $product = Product::find($id);
         $category = Category::where('id', $product->category_id)->first();
         $columns = Schema::getColumnListing($category->table_name);
         // здесь удаляются имена ненужных столбцов:
@@ -164,11 +170,11 @@ class ProductsController extends Controller
         array_splice($columns, 0, 2);
         array_splice($columns, count($columns) - 2, 2);
 
-        $rusColumns = [];
+        /*$rusColumns = [];
 
         foreach($columns as $column) {
             array_push($rusColumns, Property::where('real_name', $column)->first());
-        }
+        }*/
 
         $product->name = $request->input('name');
         $product->short_description = $request->input('short_description');
@@ -214,7 +220,7 @@ class ProductsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:products',
             'category_id' => 'required',
             'short_description' => 'required|max:255',
             'description' => 'required',
@@ -222,10 +228,10 @@ class ProductsController extends Controller
         ]);
     }
 
-    protected function validatorForEdit(array $data)
+    protected function validatorForEdit(array $data, $id)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:products,name,'.$id,
             'short_description' => 'required|max:255',
             'description' => 'required'
         ]);
