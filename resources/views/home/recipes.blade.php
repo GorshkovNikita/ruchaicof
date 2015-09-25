@@ -17,5 +17,6 @@
                 {!! link_to('recipes?id=' . $recipe->id, 'Узнать подробнее >>') !!}
             </div>
         @endforeach
+        {!! $recipes->render() !!}
     </div>
 @stop

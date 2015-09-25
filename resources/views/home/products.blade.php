@@ -17,5 +17,6 @@
                 {!! link_to('products?id=' . $product->id, 'Узнать подробнее >>') !!}
             </div>
         @endforeach
+        {!! $products->render() !!}
     </div>
 @stop

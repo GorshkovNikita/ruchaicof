@@ -59,7 +59,7 @@ class HomeController extends Controller
                     ]);
             }
 
-            $categories = Category::where('parent_id', null)->where('type', 0)->get();
+            $categories = Category::where('parent_id', null)->where('type', 0)->paginate(6); //->get();
             return view('home.categories')
                 ->with([
                     'categories' => $categories,
@@ -69,7 +69,7 @@ class HomeController extends Controller
         else {
             $parent = Category::where('table_name', $subcategory)->first();
             if ($parent->final == 0) {
-                $categories = Category::where('parent_id', $parent->id)->get();
+                $categories = Category::where('parent_id', $parent->id)->paginate(6); //->get();
                 return view('home.categories')
                     ->with([
                         'categories' => $categories,
@@ -77,7 +77,7 @@ class HomeController extends Controller
                     ]);
             }
             else {
-                $products = Product::where('category_id', $parent->id)->get();
+                $products = Product::where('category_id', $parent->id)->paginate(6); //->get();
                 return view('home.products')
                     ->with([
                         'products' => $products,
@@ -142,7 +142,7 @@ class HomeController extends Controller
                     ->with('recipe', $recipe);
             }
 
-            $categories = Category::where('parent_id', null)->where('type', 1)->get();
+            $categories = Category::where('parent_id', null)->where('type', 1)->paginate(6);//->get();
             return view('home.categories')
                 ->with([
                     'categories' => $categories,
@@ -156,7 +156,7 @@ class HomeController extends Controller
                 return redirect('recipes');
 
             if ($parent->final == 0) {
-                $categories = Category::where('parent_id', $parent->id)->get();
+                $categories = Category::where('parent_id', $parent->id)->paginate(6);//->get();
                 return view('home.categories')
                     ->with([
                         'categories' => $categories,
@@ -164,7 +164,7 @@ class HomeController extends Controller
                     ]);
             }
             else {
-                $recipes = Recipe::where('category_id', $parent->id)->get();
+                $recipes = Recipe::where('category_id', $parent->id)->paginate(6);//->get();
                 return view('home.recipes')
                     ->with([
                         'recipes' => $recipes,

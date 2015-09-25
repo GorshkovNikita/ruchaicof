@@ -55,7 +55,7 @@ class BootstrapThreePresenter implements PresenterContract
     {
         if ($this->hasPages()) {
             return sprintf(
-                '<ul class="pagination">%s %s %s</ul>',
+                '<ul class="pagination" style="clear: both;">%s %s %s</ul>',
                 $this->getPreviousButton(),
                 $this->getLinks(),
                 $this->getNextButton()
@@ -76,6 +76,10 @@ class BootstrapThreePresenter implements PresenterContract
     protected function getAvailablePageWrapper($url, $page, $rel = null)
     {
         $rel = is_null($rel) ? '' : ' rel="'.$rel.'"';
+
+        // Удаления слеша перед параметрами
+        $pos = strrpos($url, "?");
+        $url = substr_replace($url, '', $pos - 1, 1);
 
         return '<li><a href="'.htmlentities($url).'"'.$rel.'>'.$page.'</a></li>';
     }
@@ -99,7 +103,7 @@ class BootstrapThreePresenter implements PresenterContract
      */
     protected function getActivePageWrapper($text)
     {
-        return '<li class="active"><span>'.$text.'</span></li>';
+        return '<li class="active"><strong>'.$text.'</strong></li>';
     }
 
     /**

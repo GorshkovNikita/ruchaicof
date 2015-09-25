@@ -786,6 +786,28 @@ input[type="submit"]:focus {
     border: 2px inset red;
 }
 
+/* Pagination */
+
+.pagination {
+    text-align: center;
+    color: #d8be81;
+}
+
+.pagination > li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    background-color: #66512c;
+    margin: 2px;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -ms-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    -o-box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4);
+}
+
 /* Footer */
 
 footer {

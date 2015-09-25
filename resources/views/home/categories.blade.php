@@ -21,5 +21,6 @@
                 @endif
             </div>
         @endforeach
+        {!! $categories->render() !!}
     </div>
 @stop
