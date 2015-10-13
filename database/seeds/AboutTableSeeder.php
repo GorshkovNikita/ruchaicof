@@ -13,7 +13,7 @@ class AboutTableSeeder extends Seeder
     {
         DB::table('about')->insert([
             [
-                'content' => 'Крутая компания'
+                'content' => 'Здесь информация о нашей компании'
             ]
         ]);
     }

@@ -11,10 +11,10 @@
             <h4>Связаться с нами Вы можете одним из нескольких способов:</h4>
             <ul>
                 <li>
-                    По телефону: <strong>+7 (495) 624-15-63</strong>
+                    По телефону: <strong>+7 (495) 624-59-21</strong>
                 </li>
                 <li>
-                    Написать на почту: <strong>ruchaicof@mail.ru</strong>
+                    Написать на почту: <strong>ruchaicof@info.ru</strong>
                 </li>
                 <li>
                     Прийти в офис: <strong>ул. Мясницкая, дом 8/2, стр.1</strong>

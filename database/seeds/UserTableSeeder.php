@@ -13,15 +13,15 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Петр',
-                'surname' => 'Петров',
+                'name' => 'Администратор',
+                'surname' => 'РуЧайКоф',
                 'email' => 'admin1@mail.ru',
                 'password' => bcrypt('admin'),
                 'phone' => '8 (900) 777-77-77',
                 'organization' => 'ruchaicof',
                 'role' => 'admin',
                 'remember_token' => ''
-            ],
+            ]/*,
             [
                 'name' => 'Сидор',
                 'surname' => 'Сидоров',
@@ -51,7 +51,7 @@ class UserTableSeeder extends Seeder
                 'organization' => 'neruchaicof',
                 'role' => 'client',
                 'remember_token' => ''
-            ]
+            ]*/
         ]);
     }
 }
