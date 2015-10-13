@@ -11,6 +11,15 @@
 |
 */
 
+Route::get('migrate', function () {
+    $exitCode = Artisan::call('migrate');
+    $exitCode = Artisan::call('db:seed');
+});
+
+Route::get('migrate-reset',function() {
+    $exitCode = Artisan::call('migrate:reset');
+});
+
 Route::group(['prefix' => 'admin'], function() {
 
     Route::get('login', 'Admin\AdminController@getLogin');
@@ -53,13 +62,4 @@ Route::group(['middleware' => 'category'], function() {
         'password' => 'Auth\PasswordController',
         '/' => 'HomeController'
     ]);
-});
-
-Route::get('migrate', function () {
-    $exitCode = Artisan::call('migrate');
-    $exitCode = Artisan::call('db:seed');
-});
-
-Route::get('migrate-reset',function() {
-    $exitCode = Artisan::call('migrate:reset');
 });
