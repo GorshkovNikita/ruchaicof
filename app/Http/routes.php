@@ -54,3 +54,12 @@ Route::group(['middleware' => 'category'], function() {
         '/' => 'HomeController'
     ]);
 });
+
+Route::get('migrate', function () {
+    $exitCode = Artisan::call('migrate');
+    $exitCode = Artisan::call('db:seed');
+});
+
+Route::get('migrate-reset',function() {
+    $exitCode = Artisan::call('migrate:reset');
+});
