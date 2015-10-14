@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                {!! link_to('admin', 'РуЧайКоф', ['class' => 'navbar-brand']) !!}
+                {!! link_to('/', 'РуЧайКоф', ['class' => 'navbar-brand']) !!}
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

@@ -120,10 +120,10 @@
                 </div>
                 <ul>
                     <li>
-                        8 (495) 777-77-90
+                        +7 (495) 624-59-21
                     </li>
                     <li>
-                        ruchaicof@mail.ru
+                        ruchaicof@info.ru
                     </li>
                 </ul>
                 <ul>
